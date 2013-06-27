@@ -7,10 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-session.setAttribute("userLogin", null);
-session.setAttribute("fname", null);
-session.setAttribute("lname", null);
-session.setAttribute("email", null);
+//session.setAttribute("userLogin", null);
+//session.setAttribute("fname", null);
+//session.setAttribute("lname", null);
+//session.setAttribute("email", null);
 %>
 
 <!DOCTYPE html>
@@ -216,11 +216,11 @@ session.setAttribute("email", null);
             </div>
         </div>        <div class="second-top-box">
             <div class="container-box">
-                <span class="welcome-msg pull-left">Welcome visitor you can <a href="login.php">login</a> or <a href="create_account.php">create an account</a>.</span>
+                <span class="welcome-msg pull-left">Welcome <%= session.getAttribute( "fname") %> <%= session.getAttribute( "lname") %>, you can <a href="login.php">login</a> or <a href="create_account.php">create an account</a>.</span>
                 <ul class="pull-right">
                     <li><a href="#">My Account</a></li>
                     <li><a href="#">My Places</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="logout.jsp">Logout</a></li>
                 </ul>
             </div>
         </div>        <div class="container-box">
@@ -389,7 +389,7 @@ session.setAttribute("email", null);
                         if(request.getAttribute("userLogin")!=null)
                         {
                             String flag = request.getAttribute("userLogin").toString();
-                            if(flag=="error")
+                            if(flag.equals("error"))
                             {
                                 out.println("<p class='text-error'>Wrong username or password. Please try again.</p>");
                                 request.setAttribute("userLogin", null);

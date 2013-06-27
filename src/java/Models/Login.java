@@ -21,6 +21,7 @@ public class Login {
             String str = "SELECT * FROM `trs_srilanka`.`sys_users` where US_email=? and US_password=?";
             Connection con = null;
             DBCON ob = new DBCON();
+            con = ob.createConnection();
             PreparedStatement ps = con.prepareStatement(str);
             ps.setString(1, user);
             ps.setString(2, pass);

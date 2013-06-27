@@ -53,12 +53,13 @@ public class loginCheck extends HttpServlet {
                     session.setAttribute("lname", rslt.getString(3));
                     session.setAttribute("email", username);
                     session.setAttribute("userLogin", "success");
+                    request.getRequestDispatcher("login.jsp").forward(request,response);
                 }
                 else
                 {
                     request.setAttribute("userLogin", "error");
                     request.getRequestDispatcher("login.jsp").forward(request,response);
-                    response.sendRedirect("login.jsp");
+                    //response.sendRedirect("login.jsp");
                 }
             }
             catch(Exception ec)
