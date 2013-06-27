@@ -8,6 +8,9 @@
 
 <%
 session.setAttribute("userLogin", null);
+session.setAttribute("fname", null);
+session.setAttribute("lname", null);
+session.setAttribute("email", null);
 %>
 
 <!DOCTYPE html>
@@ -382,7 +385,21 @@ session.setAttribute("userLogin", null);
                     <div class="span6 login">
                         <h2>Registered Customers</h2>
                         <p>If you have an account with us, please log in.</p>
-                        <form name="loginForm" method="post" action="#">
+                         <% 
+                        if(request.getAttribute("userLogin")!=null)
+                        {
+                            String flag = request.getAttribute("userLogin").toString();
+                            if(flag=="error")
+                            {
+                                out.println("<p class='text-error'>Wrong username or password. Please try again.</p>");
+                                request.setAttribute("userLogin", null);
+                            }
+                            else
+                            {
+                                out.println("<p class='text-success'>Correct login!</p>");
+                            }
+                        }%>
+                        <form name="loginForm" method="post" action="loginCheck">
                             <label>Email Adress: <span class="required">*</span></label>
                             <input name="email" type="email" required title="Please provide an proper email address.">
                             <label>Password: <span class="required">*</span></label>
