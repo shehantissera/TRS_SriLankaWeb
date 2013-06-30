@@ -215,11 +215,11 @@
         </div>	
     <div class="second-top-box">
             <div class="container-box">
-                <span class="welcome-msg pull-left">Welcome visitor you can <a href="login.php">login</a> or <a href="create_account.php">create an account</a>.</span>
+                <span class="welcome-msg pull-left">Welcome <%= session.getAttribute( "fname") %> <%= session.getAttribute( "lname") %>, you can <a href="login.jsp">login</a> or <a href="create_account.jsp">create an account</a>.</span>
                 <ul class="pull-right">
                     <li><a href="#">My Account</a></li>
                     <li><a href="#">My Places</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="logout.jsp">Logout</a></li>
                 </ul>
             </div>
         </div>        

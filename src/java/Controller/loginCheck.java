@@ -54,7 +54,7 @@ public class loginCheck extends HttpServlet {
                     session.setAttribute("lname", rslt.getLname());
                     session.setAttribute("email", username);
                     session.setAttribute("userLogin", "success");
-                    request.getRequestDispatcher("login.jsp").forward(request,response);
+                    request.getRequestDispatcher("index.jsp").forward(request,response);
                 }
                 else
                 {

@@ -380,7 +380,7 @@
                         <p>By creating an account with our application, you will be able to find the information regarding Sri Lanka faster, 
                             these searches can be according to your interests, get to know the best places available with the recommendations and reviews of other guests.
                         </p>
-                        <a href="create_account.php" class="btn btn-primary">Create an account</a>
+                        <a href="create_account.jsp" class="btn btn-primary">Create an account</a>
                     </div>
                     <div class="span6 login">
                         <h2>Registered Customers</h2>
