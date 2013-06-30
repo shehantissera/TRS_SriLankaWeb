@@ -4,25 +4,21 @@
  */
 package Controller;
 
-import Models.Login;
 import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Shehan Tis
  */
-@WebServlet(name = "loginCheck", urlPatterns = {"/loginCheck"})
-public class loginCheck extends HttpServlet {
+@WebServlet(name = "UserController", urlPatterns = {"/UserController"})
+public class UserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -39,33 +35,25 @@ public class loginCheck extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String username = request.getParameter("email");
-            String password = request.getParameter("password");
-            
-            Login obj = new Login();
-            User rslt = obj.existingLogin(username, password);
-            HttpSession session = request.getSession(true);
-            try
-            {
-                if(rslt.getAccountStatus().equals("Active"))
-                {
-                    session.setAttribute("USID", rslt.getUSID());
-                    session.setAttribute("fname", rslt.getFname());
-                    session.setAttribute("lname", rslt.getLname());
-                    session.setAttribute("email", username);
-                    session.setAttribute("userLogin", "success");
-                    request.getRequestDispatcher("login.jsp").forward(request,response);
+            if(request.getParameter("addUser") != null){
+                String fname = request.getParameter("fname");
+                String lname = request.getParameter("lname");
+                String ageRange = request.getParameter("ageRange");
+                String gender = request.getParameter("gender");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                String country = request.getParameter("country");
+                String usertype = request.getParameter("usertype");
+                
+                User user = new User();
+                boolean rslt = user.insertUser(fname, lname, ageRange, gender, email, password, country, usertype);
+                if(rslt == true){
+                    request.setAttribute("insert","success");
+                }else{
+                    request.setAttribute("insert","error");
                 }
-                else
-                {
-                    request.setAttribute("userLogin", "error");
-                    request.getRequestDispatcher("login.jsp").forward(request,response);
-                    //response.sendRedirect("login.jsp");
-                }
-            }
-            catch(Exception ec)
-            {
-                Logger.getLogger(loginCheck.class.getName()).log(Level.SEVERE, null, ec);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                response.sendRedirect("login.jsp");
             }
         } finally {            
             out.close();

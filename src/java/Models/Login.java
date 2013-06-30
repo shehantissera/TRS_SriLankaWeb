@@ -13,24 +13,41 @@ import java.sql.ResultSet;
  * @author Shehan Tis
  */
 public class Login {
-    public ResultSet existingLogin(String user, String pass)
+    public User existingLogin(String user, String pass)
     {
-        ResultSet  rs = null;
+        ResultSet rs = null;
+        User loginUser = new User();
+        String _user="";
+        String _pass="";
         try
         {
-            String str = "SELECT * FROM `trs_srilanka`.`sys_users` where US_email=? and US_password=?";
+            String str = "SELECT *, DES_DECRYPT(US_password,'shehanproduction@ymail.com') FROM trs_srilanka.sys_users where US_email=?";
             Connection con = null;
             DBCON ob = new DBCON();
             con = ob.createConnection();
             PreparedStatement ps = con.prepareStatement(str);
             ps.setString(1, user);
-            ps.setString(2, pass);
             rs = ps.executeQuery();
+            if(rs.next()){
+                loginUser.setUSID(rs.getLong(1));
+                loginUser.setFname(rs.getString(2));
+                loginUser.setLname(rs.getString(3));
+                loginUser.setEmail(rs.getString(6));
+                loginUser.setPassword(rs.getString(11));
+                if(user.equals(rs.getString(6)) & pass.equals(rs.getString(11)))
+                {
+                    loginUser.setAccountStatus(rs.getString(10));
+                }
+                else
+                {
+                    loginUser.setAccountStatus("Inactive");
+                }
+            }
         }
         catch(Exception es)
         {
-            rs=null;
+            loginUser=null;
         }
-        return rs;
+        return loginUser;
     }
 }
