@@ -375,8 +375,30 @@
                             <label>Name: <span class="required">*</span></label>
                             <input type="text" maxlength=100 required title="The name should be filled." placeholder="Enter the sight name...">
 
+                            <label>Brief: <span class="required">*</span></label>
+                            <textarea required="required" maxlength=999 placeholder="Brief should be less than 1000 characters"></textarea>
+
+                            <label>Landline:</label>
+                            <input type="number" maxlength=20  placeholder="ex: 94789452612">
+
+                            <label>Mobile:</label>
+                            <input type="number" maxlength=20  placeholder="ex: 94777897898">
+
                             <label>Description: <span class="required">*</span></label>
-                            <textarea required="required" maxlength=999 placeholder="Description should be less than 1000 characters"></textarea>
+                            <textarea required="required" maxlength=999 placeholder="Description should be less than 10000 characters"></textarea>
+
+                            <label>Entrance type:</label>
+                            <select>
+                                <option disabled selected value="">Please Select</option>
+                                <option>Free</option>
+                                <option>Paid</option>
+                            </select>
+
+                            <label>Price per adult:</label>
+                            <input type="number" required maxlength=20  placeholder="ex: 200">
+
+                            <label>Price per child:</label>
+                            <input type="number" required maxlength=20  placeholder="ex: 125">
 
                             <label>Location:</label>
                             <select>
@@ -385,12 +407,18 @@
                                 <option>Afghanistan</option>
                             </select>
 
-                            <label>Category:</label>
-                            <select>
-                                <option disabled selected>Please Select</option>
-                                <option>Aaland Islands</option>
-                                <option>Afghanistan</option>
-                            </select>
+                            <label>Category: <span class="required">*</span></label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" id="inlineCheckbox1" value="option1"> Category 1
+                            </label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" id="inlineCheckbox2" value="option2"> Category 2
+                            </label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"> Category 3
+                            </label>
+
+                            <br><br>
 
                             <label>Longitude: <span class="required">*</span></label>
                             <input type="number" step="any" required title="Longitude can contain only the range from -180 to 180">
