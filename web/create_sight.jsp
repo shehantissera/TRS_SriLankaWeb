@@ -370,38 +370,38 @@
                     <div class="span6 login">
                         <h2>New Sight</h2>
                         <p>Enter your information in the fields given below. The fields which contain <span class="required">*</span> are the required fields.</p>
-                        <form action="#">
+                        <form name="insertSightForm" method="post" action="SightsController">
 
                             <label>Name: <span class="required">*</span></label>
-                            <input type="text" maxlength=100 required title="The name should be filled." placeholder="Enter the sight name...">
+                            <input name="name" type="text" maxlength=100 required title="The name should be filled." placeholder="Enter the sight name...">
 
                             <label>Brief: <span class="required">*</span></label>
-                            <textarea required="required" maxlength=999 placeholder="Brief should be less than 1000 characters"></textarea>
+                            <textarea name="brief" required="required" maxlength=999 placeholder="Brief should be less than 1000 characters"></textarea>
 
                             <label>Landline:</label>
-                            <input type="number" maxlength=20  placeholder="ex: 94789452612">
+                            <input name="landline" type="number" maxlength=20  placeholder="ex: 94789452612">
 
                             <label>Mobile:</label>
-                            <input type="number" maxlength=20  placeholder="ex: 94777897898">
+                            <input name="mobile" type="number" maxlength=20  placeholder="ex: 94777897898">
 
                             <label>Description: <span class="required">*</span></label>
-                            <textarea required="required" maxlength=999 placeholder="Description should be less than 10000 characters"></textarea>
+                            <textarea name="description" required="required" maxlength=999 placeholder="Description should be less than 10000 characters"></textarea>
 
                             <label>Entrance type:</label>
-                            <select>
+                            <select name="entrancetype">
                                 <option disabled selected value="">Please Select</option>
                                 <option>Free</option>
                                 <option>Paid</option>
                             </select>
 
                             <label>Price per adult:</label>
-                            <input type="number" required maxlength=20  placeholder="ex: 200">
+                            <input name="adult" type="number" required maxlength=20  placeholder="ex: 200">
 
                             <label>Price per child:</label>
-                            <input type="number" required maxlength=20  placeholder="ex: 125">
+                            <input name="child" type="number" required maxlength=20  placeholder="ex: 125">
 
                             <label>Location:</label>
-                            <select>
+                            <select name="location">
                                 <option disabled selected value="">Please Select</option>
                                 <option>Aaland Islands</option>
                                 <option>Afghanistan</option>
@@ -431,7 +431,7 @@
 
                             <br><br>
 
-                            <input type="submit" value="Create Sight" class="btn btn-primary">
+                            <input name="addSight" type="submit" value="Create Sight" class="btn btn-primary">
 
                             <input type="reset" value="Clear" class="btn btn-primary">
 
