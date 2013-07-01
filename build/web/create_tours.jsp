@@ -27,6 +27,16 @@
         <!--[if (gte IE 6)&(lte IE 8)]>
             <script type="text/javascript" src="js/selectivizr-min.js"></script>
         <![endif]--></head>
+<%
+    if (session.getAttribute("userLogin") == null)
+    {
+        response.sendRedirect("login.jsp");
+    }
+    else if(session.getAttribute("userLogin")=="error")
+    {
+        response.sendRedirect("login.jsp");
+    }
+%>
     <body>
         <div id="options-panel">
             <div class="options">
