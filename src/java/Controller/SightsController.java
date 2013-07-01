@@ -4,14 +4,18 @@
  */
 package Controller;
 
+import Models.Record;
 import Models.Sight;
+import Models.UniqueKeyGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,19 +40,36 @@ public class SightsController extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             if(request.getParameter("addSight") != null){
-                String name = request.getParameter("name");
-                String brief = request.getParameter("brief");
-                String landline = request.getParameter("landline");
-                String mobile = request.getParameter("mobile");
-                String description = request.getParameter("description");
-                String entrancetype = request.getParameter("entrancetype");
-                String adult = request.getParameter("adult");
-                String child = request.getParameter("child");
+                HttpSession session = request.getSession(true);
+                String USID = session.getAttribute("USID").toString();
+                java.util.Date date = new java.util.Date();
                 
                 Sight sight = new Sight();
-                boolean rslt = sight.insertSight(name, brief, landline, mobile, description, entrancetype, adult, child);
-                if(rslt == true){
+                UniqueKeyGenerator key = new UniqueKeyGenerator();
+                
+                sight.setSID(key.generateNewKey());
+                sight.setName(request.getParameter("name"));
+                sight.setBrief(request.getParameter("brief"));
+                sight.setLandline(request.getParameter("landline"));
+                sight.setMobile(request.getParameter("mobile"));
+                sight.setDescription(request.getParameter("description"));
+                sight.setEntrance(request.getParameter("entrancetype"));
+                sight.setAdult(request.getParameter("adult"));
+                sight.setChild(request.getParameter("child"));
+                sight.setGEOID(0);
+                sight.setLOCID(0);
+                
+                Sight rslt = sight.insertSight(sight);
+                if(rslt != null){
                     request.setAttribute("insert","success");
+                    
+                    Record newrec = new Record();
+                    newrec.setRECID(key.generateNewKey());
+                    newrec.setUSID(Long.parseLong(USID));
+                    newrec.setREFID(sight.getSID());
+                    newrec.setTask("Insert");
+                    newrec.setDatetime(new Timestamp(date.getTime()).toString());
+                    newrec.insertRecordStatus(newrec);
                 }else{
                     request.setAttribute("insert","error");
                 }

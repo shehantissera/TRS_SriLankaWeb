@@ -93,12 +93,12 @@ public class Service {
         this.servicetype = servicetype;
     }
 
-    public String getCategory() {
-        return category;
+    public long getLOCID() {
+        return LOCID;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setLOCID(long LOCID) {
+        this.LOCID = LOCID;
     }
 
     public long getGEOID() {
@@ -119,34 +119,35 @@ public class Service {
     private String skype;
     private String address;
     private String servicetype;
-    private String category;
+    private long LOCID;
     private long GEOID;
     
-    public boolean insertService(String companyname, String providername, String description, String email, String landline, String mobile, String skype, String address, String servicetype, long LOCID, long GEOID){
-        boolean flag = false;
+    public Service insertService(Service rec){
+        Service flag = null;
         try {
             DBCON ob = new DBCON();
-            UniqueKeyGenerator key = new UniqueKeyGenerator();
             Connection con = null;
             CallableStatement cs = null;
             con = ob.createConnection();
             cs = con.prepareCall("{call trs_srilanka.insertService(?,?,?,?,?,?,?,?,?,?,?,?)}");
-            cs.setLong(1, key.generateNewKey());
-            cs.setString(2, companyname);
-            cs.setString(3, providername);
-            cs.setString(4, description);
-            cs.setString(5, email);
-            cs.setString(6, landline);
-            cs.setString(7, mobile);
-            cs.setString(8, skype);
-            cs.setString(9, address);
-            cs.setString(10, servicetype);
-            cs.setLong(11, LOCID);
-            cs.setLong(12, GEOID);
+            cs.setLong(1, rec.getSVID());
+            cs.setString(2, rec.getCompanyname());
+            cs.setString(3, rec.getProvidername());
+            cs.setString(4, rec.getDescription());
+            cs.setString(5, rec.getEmail());
+            cs.setString(6, rec.getLandline());
+            cs.setString(7, rec.getMobile());
+            cs.setString(8, rec.getSkype());
+            cs.setString(9, rec.getAddress());
+            cs.setString(10, rec.getServicetype());
+            cs.setLong(11, rec.getLOCID());
+            cs.setLong(12, rec.getGEOID());
             
             int res = cs.executeUpdate();
             if(res>0){
-                flag = true;
+                flag = rec;
+            }else{
+                flag = null;
             }
         } catch (Exception ex) {
             ex.printStackTrace();

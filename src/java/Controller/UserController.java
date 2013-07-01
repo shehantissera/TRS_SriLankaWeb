@@ -4,14 +4,18 @@
  */
 package Controller;
 
+import Models.Record;
+import Models.UniqueKeyGenerator;
 import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,19 +40,44 @@ public class UserController extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             if(request.getParameter("addUser") != null){
-                String fname = request.getParameter("fname");
-                String lname = request.getParameter("lname");
-                String ageRange = request.getParameter("ageRange");
-                String gender = request.getParameter("gender");
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
-                String country = request.getParameter("country");
-                String usertype = request.getParameter("usertype");
+                HttpSession session = request.getSession(true);
+                String USID = "";
+                try{
+                    USID = session.getAttribute("USID").toString();
+                }catch(Exception e){
+                    USID = "0";
+                }
+                java.util.Date date = new java.util.Date();
                 
                 User user = new User();
-                boolean rslt = user.insertUser(fname, lname, ageRange, gender, email, password, country, usertype);
-                if(rslt == true){
+                UniqueKeyGenerator key = new UniqueKeyGenerator();
+                
+                user.setUSID(key.generateNewKey());
+                user.setFname(request.getParameter("fname"));
+                user.setLname(request.getParameter("lname"));
+                user.setAgeRange(request.getParameter("ageRange"));
+                user.setGender(request.getParameter("gender"));
+                user.setEmail(request.getParameter("email"));
+                user.setPassword(request.getParameter("password"));
+                user.setCountry(request.getParameter("country"));
+                user.setUsertype(request.getParameter("usertype"));
+                user.setAccountStatus("New");
+                
+                User rslt = user.insertUser(user);
+                if(rslt != null){
                     request.setAttribute("insert","success");
+                    
+                    Record newrec = new Record();
+                    newrec.setRECID(key.generateNewKey());
+                    if(!USID.equals("0")){
+                        newrec.setUSID(Long.parseLong(USID));
+                    }else{
+                        newrec.setUSID(user.getUSID());
+                    }
+                    newrec.setREFID(user.getUSID());
+                    newrec.setTask("Insert");
+                    newrec.setDatetime(new Timestamp(date.getTime()).toString());
+                    newrec.insertRecordStatus(newrec);
                 }else{
                     request.setAttribute("insert","error");
                 }

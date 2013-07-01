@@ -4,14 +4,18 @@
  */
 package Controller;
 
+import Models.Record;
 import Models.Tour;
+import Models.UniqueKeyGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,16 +40,33 @@ public class ToursController extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             if(request.getParameter("addTour") != null){
-                String title = request.getParameter("title");
-                String itinary = request.getParameter("itinary");
-                String noOfDays = request.getParameter("noOfDays");
-                String accomadationType = request.getParameter("accomadationType");
-                String basis = request.getParameter("basis");
+                HttpSession session = request.getSession(true);
+                String USID = session.getAttribute("USID").toString();
+                java.util.Date date = new java.util.Date();
                 
                 Tour tour = new Tour();
-                boolean rslt = tour.insertTour(title, itinary, noOfDays, accomadationType, basis);
-                if(rslt == true){
+                UniqueKeyGenerator key = new UniqueKeyGenerator();
+                
+                tour.setTRID(key.generateNewKey());
+                tour.setTitle(request.getParameter("title"));
+                tour.setItinary(request.getParameter("itinary"));
+                tour.setNoOfDays(request.getParameter("noOfDays"));
+                tour.setAccomadationType(request.getParameter("accomadationType"));
+                tour.setBasis(request.getParameter("basis"));
+                tour.setGEOID(0);
+                
+                
+                Tour rslt = tour.insertTour(tour);
+                if(rslt != null){
                     request.setAttribute("insert","success");
+                    
+                    Record newrec = new Record();
+                    newrec.setRECID(key.generateNewKey());
+                    newrec.setUSID(Long.parseLong(USID));
+                    newrec.setREFID(tour.getTRID());
+                    newrec.setTask("Insert");
+                    newrec.setDatetime(new Timestamp(date.getTime()).toString());
+                    newrec.insertRecordStatus(newrec);
                 }else{
                     request.setAttribute("insert","error");
                 }

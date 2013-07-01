@@ -4,14 +4,18 @@
  */
 package Controller;
 
+import Models.Record;
 import Models.Service;
+import Models.UniqueKeyGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,20 +40,37 @@ public class ServiceController extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             if(request.getParameter("addService") != null){
-                String companyname = request.getParameter("companyname");
-                String providername = request.getParameter("providername");
-                String description = request.getParameter("description");
-                String email = request.getParameter("email");
-                String landline = request.getParameter("landline");
-                String mobile = request.getParameter("mobile");
-                String skype = request.getParameter("skype");
-                String address = request.getParameter("address");
-                String servicetype = request.getParameter("servicetype");
+                HttpSession session = request.getSession(true);
+                String USID = session.getAttribute("USID").toString();
+                java.util.Date date = new java.util.Date();
                 
                 Service service = new Service();
-                boolean rslt = service.insertService(companyname, providername, description, email, landline, mobile, skype, address, servicetype, 0, 0);
-                if(rslt == true){
+                UniqueKeyGenerator key = new UniqueKeyGenerator();
+                
+                service.setSVID(key.generateNewKey());
+                service.setCompanyname(request.getParameter("companyname"));
+                service.setProvidername(request.getParameter("providername"));
+                service.setDescription(request.getParameter("description"));
+                service.setEmail(request.getParameter("email"));
+                service.setLandline(request.getParameter("landline"));
+                service.setMobile(request.getParameter("mobile"));
+                service.setSkype(request.getParameter("skype"));
+                service.setAddress(request.getParameter("address"));
+                service.setServicetype(request.getParameter("servicetype"));
+                service.setGEOID(0);
+                service.setLOCID(0);
+                
+                Service rslt = service.insertService(service);
+                if(rslt != null){
                     request.setAttribute("insert","success");
+                    
+                    Record newrec = new Record();
+                    newrec.setRECID(key.generateNewKey());
+                    newrec.setUSID(Long.parseLong(USID));
+                    newrec.setREFID(service.getSVID());
+                    newrec.setTask("Insert");
+                    newrec.setDatetime(new Timestamp(date.getTime()).toString());
+                    newrec.insertRecordStatus(newrec);
                 }else{
                     request.setAttribute("insert","error");
                 }

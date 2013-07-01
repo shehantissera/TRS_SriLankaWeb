@@ -395,10 +395,10 @@
                             </select>
 
                             <label>Price per adult:</label>
-                            <input name="adult" type="number" required maxlength=20  placeholder="ex: 200">
+                            <input name="adult" type="number" maxlength=20  placeholder="ex: 200">
 
                             <label>Price per child:</label>
-                            <input name="child" type="number" required maxlength=20  placeholder="ex: 125">
+                            <input name="child" type="number" maxlength=20  placeholder="ex: 125">
 
                             <label>Location:</label>
                             <select name="location">

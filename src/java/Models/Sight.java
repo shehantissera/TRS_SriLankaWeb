@@ -113,30 +113,31 @@ public class Sight {
     private long LOCID;
     private long GEOID;
     
-    public boolean insertSight(String name, String brief, String landline, String mobile, String description, String entrance, String adult, String child){
-        boolean flag = false;
+    public Sight insertSight(Sight rec){
+        Sight flag = null;
         try {
             DBCON ob = new DBCON();
-            UniqueKeyGenerator key = new UniqueKeyGenerator();
             Connection con = null;
             CallableStatement cs = null;
             con = ob.createConnection();
             cs = con.prepareCall("{call trs_srilanka.insertSight(?,?,?,?,?,?,?,?,?,?,?)}");
-            cs.setLong(1, key.generateNewKey());
-            cs.setString(2, name);
-            cs.setString(3, brief);
-            cs.setString(4, landline);
-            cs.setString(5, mobile);
-            cs.setString(6, description);
-            cs.setString(7, entrance);
-            cs.setString(8, adult);
-            cs.setString(9, child);
-            cs.setLong(10, 0);
-            cs.setLong(11, 0);
+            cs.setLong(1, rec.getSID());
+            cs.setString(2, rec.getName());
+            cs.setString(3, rec.getBrief());
+            cs.setString(4, rec.getLandline());
+            cs.setString(5, rec.getMobile());
+            cs.setString(6, rec.getDescription());
+            cs.setString(7, rec.getEntrance());
+            cs.setString(8, rec.getAdult());
+            cs.setString(9, rec.getChild());
+            cs.setLong(10, rec.getLOCID());
+            cs.setLong(11, rec.getGEOID());
             
             int res = cs.executeUpdate();
             if(res>0){
-                flag = true;
+                flag = rec;
+            }else{
+                flag = null;
             }
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -60,32 +60,43 @@ public class Tour {
     public void setGEOID(long GEOID) {
         this.GEOID = GEOID;
     }
+
+    public String getBasis() {
+        return basis;
+    }
+
+    public void setBasis(String basis) {
+        this.basis = basis;
+    }
+    
     private long TRID;
     private String title;
     private String itinary;
     private String noOfDays;
     private String accomadationType;
+    private String basis;
     private long GEOID;
     
-    public boolean insertTour(String title, String itinary, String noOfDays, String accomadationType, String basis){
-        boolean flag = false;
+    public Tour insertTour(Tour rec){
+        Tour flag = null;
         try {
             DBCON ob = new DBCON();
-            UniqueKeyGenerator key = new UniqueKeyGenerator();
             Connection con = null;
             CallableStatement cs = null;
             con = ob.createConnection();
             cs = con.prepareCall("{call trs_srilanka.insertTour(?,?,?,?,?,?,?)}");
-            cs.setLong(1, key.generateNewKey());
-            cs.setString(2, title);
-            cs.setString(3, itinary);
-            cs.setString(4, noOfDays);
-            cs.setString(5, accomadationType);
-            cs.setString(6, basis);
-            cs.setLong(7, 0);
+            cs.setLong(1, rec.getTRID());
+            cs.setString(2, rec.getTitle());
+            cs.setString(3, rec.getItinary());
+            cs.setString(4, rec.getNoOfDays());
+            cs.setString(5, rec.getAccomadationType());
+            cs.setString(6, rec.getBasis());
+            cs.setLong(7, rec.getGEOID());
             int res = cs.executeUpdate();
             if(res>0){
-                flag = true;
+                flag = rec;
+            }else{
+                flag=null;
             }
         } catch (Exception ex) {
             ex.printStackTrace();

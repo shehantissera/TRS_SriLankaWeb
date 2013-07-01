@@ -104,28 +104,30 @@ public class User {
     private String usertype;
     private String accountStatus;
     
-    public boolean insertUser(String fname, String lname, String ageRange, String gender, String email, String password, String country, String usertype){
-        boolean flag = false;
+    public User insertUser(User rec){
+        User flag = null;
         try {
             DBCON ob = new DBCON();
-            UniqueKeyGenerator key = new UniqueKeyGenerator();
             Connection con = null;
             CallableStatement cs = null;
             con = ob.createConnection();
             cs = con.prepareCall("{call trs_srilanka.insertUser(?,?,?,?,?,?,?,?,?,?)}");
-            cs.setLong(1, key.generateNewKey());
-            cs.setString(2, fname);
-            cs.setString(3, lname);
-            cs.setString(4, ageRange);
-            cs.setString(5, gender);
-            cs.setString(6, email);
-            cs.setString(7, password);
-            cs.setString(8, country);
-            cs.setString(9, usertype);
-            cs.setString(10, "Active");
+            cs.setLong(1, rec.getUSID());
+            cs.setString(2, rec.getFname());
+            cs.setString(3, rec.getLname());
+            cs.setString(4, rec.getAgeRange());
+            cs.setString(5, rec.getGender());
+            cs.setString(6, rec.getEmail());
+            cs.setString(7, rec.getPassword());
+            cs.setString(8, rec.getCountry());
+            cs.setString(9, rec.getUsertype());
+            cs.setString(10, rec.getAccountStatus());
             int res = cs.executeUpdate();
             if(res>0){
-                flag = true;
+                flag = rec;
+            }
+            else{
+                flag = null;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
