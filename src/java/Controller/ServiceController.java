@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Models.GeoLocation;
 import Models.Record;
 import Models.Service;
 import Models.UniqueKeyGenerator;
@@ -46,6 +47,7 @@ public class ServiceController extends HttpServlet {
                 
                 Service service = new Service();
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
+                long GEOID = key.generateNewKey();
                 
                 service.setSVID(key.generateNewKey());
                 service.setCompanyname(request.getParameter("companyname"));
@@ -57,7 +59,7 @@ public class ServiceController extends HttpServlet {
                 service.setSkype(request.getParameter("skype"));
                 service.setAddress(request.getParameter("address"));
                 service.setServicetype(request.getParameter("servicetype"));
-                service.setGEOID(0);
+                service.setGEOID(GEOID);
                 service.setLOCID(0);
                 
                 Service rslt = service.insertService(service);
@@ -71,6 +73,12 @@ public class ServiceController extends HttpServlet {
                     newrec.setTask("Insert");
                     newrec.setDatetime(new Timestamp(date.getTime()).toString());
                     newrec.insertRecordStatus(newrec);
+                    
+                    GeoLocation geo = new GeoLocation();
+                    geo.setGEOID(GEOID);
+                    geo.setLongitude(request.getParameter("longitude"));
+                    geo.setLattitude(request.getParameter("latitude"));
+                    geo.insertGEOLocation(geo);
                 }else{
                     request.setAttribute("insert","error");
                 }

@@ -431,10 +431,10 @@
                             <br><br>
 
                             <label>Longitude: <span class="required">*</span></label>
-                            <input type="number" step="any" required title="Longitude can contain only the range from -180 to 180">
+                            <input name="longitude" type="number" step="any" required title="Longitude can contain only the range from -180 to 180">
 
                             <label>Latitude: <span class="required">*</span></label>
-                            <input type="number" step="any" required title="Latitude can contain only the range from -90 to 90">
+                            <input name="latitude" type="number" step="any" required title="Latitude can contain only the range from -90 to 90">
 
                             <label>Images:</label>
                             <input type="file" multiple="true" name="imageuploader"/>
@@ -455,6 +455,8 @@
                         <p>A sight can be a location which can be an attraction to the forigners and people who find it interesting. If you think you should share the areas which you find it interesting, add those information over here and add it as an new sight and let others know.
                         </p>
 
+                        <iframe src="gmaps.jsp" width="100%" height="910" seamless></iframe>
+                        
                     </div>
                 </div>
             </div>

@@ -428,10 +428,10 @@
                             </select>
 
                             <label>Longitude: <span class="required">*</span></label>
-                            <input type="number" step="any" required title="Longitude can contain only the range from -180 to 180">
+                            <input name="longitude" type="number" step="any" required title="Longitude can contain only the range from -180 to 180">
 
                             <label>Latitude: <span class="required">*</span></label>
-                            <input type="number" step="any" required title="Latitude can contain only the range from -90 to 90">
+                            <input name="latitude" type="number" step="any" required title="Latitude can contain only the range from -90 to 90">
 
                             <label>Images:</label>
                             <input type="file" multiple="true" name="imageuploader"/>
@@ -455,7 +455,9 @@
                             You are capable of entering various types of information so that the user can get most of the information in one place. Services can varie from each other according to the service you provide ex: Accomadation, Taxi services
                             <br><br>Please create your account and continue using this information system.
                         </p>
-
+                        
+                         <iframe src="gmaps.jsp" width="100%" height="910" seamless></iframe>
+                        
                     </div>
                 </div>
             </div>

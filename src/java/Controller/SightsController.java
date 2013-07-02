@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Models.GeoLocation;
 import Models.Record;
 import Models.Sight;
 import Models.UniqueKeyGenerator;
@@ -46,6 +47,7 @@ public class SightsController extends HttpServlet {
                 
                 Sight sight = new Sight();
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
+                long GEOID = key.generateNewKey();
                 
                 sight.setSID(key.generateNewKey());
                 sight.setName(request.getParameter("name"));
@@ -56,7 +58,7 @@ public class SightsController extends HttpServlet {
                 sight.setEntrance(request.getParameter("entrancetype"));
                 sight.setAdult(request.getParameter("adult"));
                 sight.setChild(request.getParameter("child"));
-                sight.setGEOID(0);
+                sight.setGEOID(GEOID);
                 sight.setLOCID(0);
                 
                 Sight rslt = sight.insertSight(sight);
@@ -70,6 +72,12 @@ public class SightsController extends HttpServlet {
                     newrec.setTask("Insert");
                     newrec.setDatetime(new Timestamp(date.getTime()).toString());
                     newrec.insertRecordStatus(newrec);
+                    
+                    GeoLocation geo = new GeoLocation();
+                    geo.setGEOID(GEOID);
+                    geo.setLongitude(request.getParameter("longitude"));
+                    geo.setLattitude(request.getParameter("latitude"));
+                    geo.insertGEOLocation(geo);
                 }else{
                     request.setAttribute("insert","error");
                 }
