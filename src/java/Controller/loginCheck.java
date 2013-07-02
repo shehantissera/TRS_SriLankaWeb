@@ -46,7 +46,7 @@ public class loginCheck extends HttpServlet {
             User rslt = obj.existingLogin(username, password);
             HttpSession session = request.getSession(true);
             try {
-                if (rslt.getFname()!= null) {
+                if (rslt.getFname() != null) {
                     if (rslt.getAccountStatus().equals("Active")) {
                         session.setAttribute("USID", rslt.getUSID());
                         session.setAttribute("fname", rslt.getFname());
@@ -62,6 +62,8 @@ public class loginCheck extends HttpServlet {
                     //response.sendRedirect("login.jsp");
                 }
             } catch (Exception ec) {
+                request.setAttribute("userLogin", "error");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
                 Logger.getLogger(loginCheck.class.getName()).log(Level.SEVERE, null, ec);
             }
         } finally {
