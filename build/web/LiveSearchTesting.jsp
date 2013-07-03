@@ -60,19 +60,52 @@
             .suggestionList li:hover {
                 background-color: #DD45CD;
             }
+            
+            .resultbox{
+                position: relative;
+                left: 260px;
+                margin: 0px 0px 0px 0px;
+                width: 200px;
+                background-color: #fff;
+                border: 1px solid #000;
+                color: #000;   
+            }
+            .resultbox li {
+                margin: 0px 0px 3px 0px;
+                padding: 3px;
+                cursor: pointer;
+            }
+            .resultbox li:hover {
+                background-color: #DD45CD;
+            }
         </style>
     </head>
     <body>
         <div>
             <form>
                 <div> <h3><font color="red">Indian States</states></font></h3> <br /> Enter India State Name to see autocomplete
-                    <input type="text" size="30" value="" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" />
+                    <input name="inputString" type="text" size="30" value="" id="inputString" onkeyup="lookup(this.value);" onblur="fill(this.value);" />
                 </div>
                 <div class="suggestionsBox" id="suggestions" style="display: none;">
                     <div class="suggestionList" id="autoSuggestionsList">
                     </div>
                 </div>
             </form>
+            
+            <form name="form1" action="#" method="post">
+                <div> <h3><font color="red">States</states></font></h3> <br />
+                    <input name="inputString" type="text" size="30" value="" id="inputString" onkeyup="custMethod();" />
+                </div>
+                <div class="suggestionsBox" id="resultbox" ></div>
+            </form>
+            
+            <script type="text/javascript">
+                function custMethod(){
+                    xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("GET","states.jsp?queryString="+document.form1.inputString.value, false);
+                    document.getElementById("resultbox").innerHTML = xmlhttp.responseText;
+                }
+            </script>
         </div>
     </body>
 </html>

@@ -8,7 +8,7 @@
         Connection con = null;
         CallableStatement cs = null;
         con = ob.createConnection();
-        String sql = "SELECT * FROM trs_srilanka.sys_sights, trs_srilanka.sys_services where S_name like '%"+str+"%' or S_brief like '%"+str+"%' or S_entrance like '%"+str+"%' or S_description like '%"+str+"%' or S_landline like '%"+str+"%' or S_mobile like '%"+str+"%' or SV_companyName like '%"+str+"%' LIMIT 10";
+        String sql = "SELECT * FROM trs_srilanka.sys_sights where S_name like '%"+str+"%' or S_brief like '%"+str+"%' or S_entrance like '%"+str+"%' or S_description like '%"+str+"%' or S_landline like '%"+str+"%' or S_mobile like '%"+str+"%' LIMIT 10";
         Statement stm = con.createStatement();
         stm.executeQuery(sql);
         ResultSet rs = stm.getResultSet();
