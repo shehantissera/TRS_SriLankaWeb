@@ -8,7 +8,7 @@
         Connection con = null;
         CallableStatement cs = null;
         con = ob.createConnection();
-        String sql = "SELECT * FROM trs_srilanka.sys_sights where S_name like '%"+str+"%' or S_brief like '%"+str+"%' or S_entrance like '%"+str+"%' or S_description like '%"+str+"%' or S_landline like '%"+str+"%' or S_mobile like '%"+str+"%' LIMIT 10";
+        String sql = "SELECT trs_srilanka.sys_sights.SID , trs_srilanka.sys_sights.S_name, trs_srilanka.sys_sights.S_description, trs_srilanka.sys_sights.GEOID as Location FROM trs_srilanka.sys_sights where S_name like '%"+str+"%' or S_description like '%"+str+"%' union SELECT trs_srilanka.sys_services.SVID, trs_srilanka.sys_services.SV_companyName, trs_srilanka.sys_services.SV_description, trs_srilanka.sys_services.GEOID FROM trs_srilanka.sys_services where SV_companyName like '%"+str+"%' or SV_description like '%"+str+"%' union  SELECT trs_srilanka.sys_tours.TRID, trs_srilanka.sys_tours.T_title, trs_srilanka.sys_tours.T_itinary, trs_srilanka.sys_tours.GEOID FROM trs_srilanka.sys_tours where T_title like '%"+str+"%' or T_itinary like '%"+str+"%'";
         Statement stm = con.createStatement();
         stm.executeQuery(sql);
         ResultSet rs = stm.getResultSet();
