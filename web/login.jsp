@@ -417,7 +417,7 @@
                             </li>
                         </ul>
                     </div>
-                    <form name="searchForm" class="navbar-search pull-right" action="searchresults.jsp" method="get">
+                    <form name="searchForm" class="navbar-search pull-right" action="searchprocesser.jsp" method="get">
                         <input class="search-query" type="search" name="q" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" on>
                         <button type="submit" class="search-button">&nbsp;</button>
                         <div class="suggestionsBox" id="suggestions" style="display: none" >

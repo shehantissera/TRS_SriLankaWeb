@@ -517,36 +517,7 @@
                             </div>
                         </div>
                         <ul class="product-list">
-                            <li>
-                                <div class="row">
-                                    <a href="product-view.html" class="img span3"><img src="content/product-list-1.png" alt=""></a>
-                                    <div class="product-caption span6">
-                                        <a href="product-view.html" class="title">Calico Mix Cady Melrose Dress</a>
-                                        <p>Duis mollis, augue rutrum viverra pellentesque, odio lacus feugiat neque, eget pulvinar enim dui vitae enim. 
-                                            Suspendisse adipiscing sollicitudin scelerisque.
-                                            <a href="product-view.html">Learn more</a>
-                                        </p>
-                                        <hr>
-                                        <div class="price pull-left">
-                                            <span class="price-old">$550.00</span>
-                                            <span class="price-new">$399.00</span>
-                                        </div>
-                                        <div class="pull-right">
-                                            <div class="stars pull-left"></div>
-                                            <a href="product-view.html" class="pull-left">5 reviews(s)</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <hr>
-                                        <div class="cart-button">
-                                            <a href="#" class="btn btn-primary pull-left">Add to cart</a>
-                                            <div class="pull-left">
-                                                <a href="#" class="wishlist-link">Add to wishlist</a>
-                                                <a href="#" class="compaire-link">Add to compare</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            ${resultList}
                             <!--<li>
                                 <div class="row">
                                     <a href="product-view.html" class="img span3"><img src="content/product-list-2.png" alt=""></a>
