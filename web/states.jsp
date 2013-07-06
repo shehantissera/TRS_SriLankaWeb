@@ -8,12 +8,12 @@
         Connection con = null;
         CallableStatement cs = null;
         con = ob.createConnection();
-        String sql = "SELECT trs_srilanka.sys_sights.SID , trs_srilanka.sys_sights.S_name, trs_srilanka.sys_sights.S_description, trs_srilanka.sys_sights.GEOID as Location FROM trs_srilanka.sys_sights where S_name like '%"+str+"%' or S_description like '%"+str+"%' union SELECT trs_srilanka.sys_services.SVID, trs_srilanka.sys_services.SV_companyName, trs_srilanka.sys_services.SV_description, trs_srilanka.sys_services.GEOID FROM trs_srilanka.sys_services where SV_companyName like '%"+str+"%' or SV_description like '%"+str+"%' union  SELECT trs_srilanka.sys_tours.TRID, trs_srilanka.sys_tours.T_title, trs_srilanka.sys_tours.T_itinary, trs_srilanka.sys_tours.GEOID FROM trs_srilanka.sys_tours where T_title like '%"+str+"%' or T_itinary like '%"+str+"%'";
+        String sql = "SELECT trs_srilanka.sys_sights.SID as ID , trs_srilanka.sys_sights.S_name as Name, trs_srilanka.sys_sights.S_description as Description, trs_srilanka.sys_sights.GEOID as Location FROM trs_srilanka.sys_sights where S_name like '%"+str+"%' or S_description like '%"+str+"%' union SELECT trs_srilanka.sys_services.SVID as ID, trs_srilanka.sys_services.SV_companyName as Name, trs_srilanka.sys_services.SV_description as Description, trs_srilanka.sys_services.GEOID as Location FROM trs_srilanka.sys_services where SV_companyName like '%"+str+"%' or SV_description like '%"+str+"%' union  SELECT trs_srilanka.sys_tours.TRID as ID, trs_srilanka.sys_tours.T_title as Name, trs_srilanka.sys_tours.T_itinary as Description, trs_srilanka.sys_tours.GEOID as Location FROM trs_srilanka.sys_tours where T_title like '%"+str+"%' or T_itinary like '%"+str+"%' limit 15";
         Statement stm = con.createStatement();
         stm.executeQuery(sql);
         ResultSet rs = stm.getResultSet();
         while (rs.next()) {
-            out.println("<li onclick='fill(" + rs.getString("S_name") + ");'>" + rs.getString("S_name") + "</li>");
+            out.println("<li onclick='search(" + rs.getString("ID") + ");'>" + rs.getString("Name") + "</li>");
         }
     } catch (Exception e) {
         out.println("Exception is ;" + e);

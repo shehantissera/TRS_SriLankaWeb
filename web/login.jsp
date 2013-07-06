@@ -51,17 +51,14 @@
                 $('#inputString').val(thisValue);
                 setTimeout("$('#suggestions').hide();", 200);
             }
+            
+            function search(val){
+                $('#inputString').val(val);
+                document.searchForm.submit();
+            }
         </script>
         <style type="text/css">
-            body {
-                font-family: Helvetica;
-                font-size: 13px;
-                color: #000;
-            }
-            h3 {
-                margin: 0px;
-                padding: 0px;
-            }
+
             .suggestionsBox {
                 position: relative;
                 left: 16px;
@@ -82,9 +79,11 @@
                 cursor: pointer;
             }
             .suggestionList li:hover {
-                background-color: #DD45CD;
+                background-color: #F7FE2E;
             }
         </style>
+        
+        
     </head>
     <body>
         <div id="options-panel">
@@ -418,10 +417,10 @@
                             </li>
                         </ul>
                     </div>
-                    <form class="navbar-search pull-right" action="#" method="get">
-                        <input class="search-query" type="search" name="q" id="inputString" onkeyup="lookup(this.value);" onblur="fill();">
+                    <form name="searchForm" class="navbar-search pull-right" action="searchresults.jsp" method="get">
+                        <input class="search-query" type="search" name="q" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" on>
                         <button type="submit" class="search-button">&nbsp;</button>
-                        <div class="suggestionsBox" id="suggestions" style="display: none;">
+                        <div class="suggestionsBox" id="suggestions" style="display: none" >
                             <div class="suggestionList" id="autoSuggestionsList">
                             </div>
                         </div>
