@@ -30,7 +30,7 @@
                         <div class="slider-border"><div class="border"></div></div>
                         <div class="title">
                             <span>2013</span>
-                            <h6>Adams peak</h6>
+                            <h6>Sunrise at adams peak</h6>
                             <div class="slider-button-box">
                                 <div class="btn-ads-container">
                                     <button class="btn-ads" type="button">
