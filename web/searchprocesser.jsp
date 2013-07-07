@@ -112,7 +112,7 @@
                 + "<a href='itemview.jsp?id=" + item.getID() + "'>Learn more</a></p><hr>"
                 + "<div class='price pull-left'>";
 
-        resultItem += "<span class='price-old'>$550.00</span>"
+        resultItem += "<span class='price-old'>"+searchID+"</span>"
                 + "<span class='price-new'>$399.00</span>"
                 + "</div><div class='pull-right'><div class='stars pull-left'></div>"
                 + "<a href='itemview.jsp?id=" + item.getID() + "' class='pull-left'>5 reviews(s)</a></div>"

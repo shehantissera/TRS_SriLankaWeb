@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>jQuery Auto Complete</title>
         <script type="text/javascript" src="js/localjquery.js"></script>
-        <script type="text/javascript">
+        <!--<script type="text/javascript">
             function lookup(inputString) {
                 if (inputString.length == 0) {
                     $('#suggestions').hide();
@@ -24,11 +24,47 @@
                     });
                 }
             }
+            
+        </script>-->
+        
+        <script language="javascript" type="text/javascript">  
+            var xmlHttp  
+            function lookup(str){
+        
+                if(str!=""){
+                    if (typeof XMLHttpRequest != "undefined"){
+                        xmlHttp= new XMLHttpRequest();
+                    }
+                    else if (window.ActiveXObject){
+                        xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    if (xmlHttp==null){
+                        alert("Browser does not support XMLHTTP Request")
+                        return;
+                    }
+                    var url="states.jsp";
+                    url +="?queryString=" +str;
+                    
+                    xmlHttp.onreadystatechange = resultbox;
+                    xmlHttp.open("POST", url, true);
+                    xmlHttp.send(null);
+                }
+        
+            }
+            
             function fill(thisValue) {
                 $('#inputString').val(thisValue);
                 setTimeout("$('#suggestions').hide();", 200);
             }
+    
+            function resultList(){   
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
+                    document.getElementById("resultbox").innerHTML=xmlHttp.responseText   
+                }   
+            }
+    
         </script>
+                    
         <style type="text/css">
             body {
                 font-family: Helvetica;
@@ -87,25 +123,12 @@
                     <input name="inputString" type="text" size="30" value="" id="inputString" onkeyup="lookup(this.value);" onblur="fill(this.value);" />
                 </div>
                 <div class="suggestionsBox" id="suggestions" style="display: none;">
-                    <div class="suggestionList" id="autoSuggestionsList">
+                    <div class="suggestionList" id="resultbox">
                     </div>
                 </div>
             </form>
             
-            <form name="form1" action="#" method="post">
-                <div> <h3><font color="red">States</states></font></h3> <br />
-                    <input name="inputString" type="text" size="30" value="" id="inputString" onkeyup="custMethod();" />
-                </div>
-                <div class="suggestionsBox" id="resultbox" ></div>
-            </form>
             
-            <script type="text/javascript">
-                function custMethod(){
-                    xmlhttp = new XMLHttpRequest();
-                    xmlhttp.open("GET","states.jsp?queryString="+document.form1.inputString.value, false);
-                    document.getElementById("resultbox").innerHTML = xmlhttp.responseText;
-                }
-            </script>
         </div>
     </body>
 </html>
