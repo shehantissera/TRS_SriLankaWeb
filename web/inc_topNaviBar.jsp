@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="navbar-static-top navbar">
     <div class="container-box top-box">
-        <a href="index.php" class="brand"><img src="img/logo.png" alt="Precise logo"></a>
+        <a href="index.jsp" class="brand"><img src="img/logo.png" alt="Precise logo"></a>
         <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <div class="icon-container">
                 <span class="icon-bar"></span>
@@ -18,8 +18,8 @@
         </a>
         <div class="nav-collapse navbar-responsive-collapse collapse">
             <ul class="nav top-main-navigation">
-                <li class="active"><a href="index.php">home</a></li>
-                <li><a href="about.php">About Sri Lanka</a></li>
+                <li class="active"><a href="index.jsp">home</a></li>
+                <li><a href="about.jsp">About Sri Lanka</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sights</a>
                     <ul class="dropdown-menu">
