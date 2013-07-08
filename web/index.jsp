@@ -639,7 +639,7 @@
                             </div>
                             <div class="span4 follow-us">
                                 <div class="title">Follow Us</div>
-                                <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FItemBridge&amp;width=292&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color=bbbbbb&amp;header=false" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                                <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fmerickson.tours.travels&amp;width=292&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color=bbbbbb&amp;header=false" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                             </div>
                         </div>
                     </div>
