@@ -70,7 +70,7 @@
                                     out.println("<p class='text-success'>Correct login!</p>");
                                 }
                             }%>
-                        <form name="loginForm" method="post" action="loginCheck">
+                        <form name="loginForm" method="post" action="../loginCheck">
                             <label>Email Adress: <span class="required">*</span></label>
                             <input name="email" type="email" required title="Please provide an proper email address.">
                             <label>Password: <span class="required">*</span></label>
