@@ -12,12 +12,12 @@
     <head>
         <%@ include file="inc_head.jsp" %> 
     </head>
-<%@ include file="inc_auth.jsp" %> 
+    <%@ include file="inc_auth.jsp" %> 
     <body>
         <%@ include file="inc_options.jsp" %> 
         <%@ include file="inc_topNaviBar.jsp" %> 
         <%@ include file="inc_accountStat.jsp" %> 
-        
+
         <div class="container-box">
             <%@ include file="inc_search.jsp" %> 
         </div>

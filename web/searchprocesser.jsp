@@ -107,17 +107,17 @@
 
         resultItem += "<li><div class='row'><a href='displayitem.jsp?id=" + item.getID() + "' class='img span3'><img src='content/product-list-1.png' alt=''></a>"
                 + "<div class='product-caption span6'>"
-                + "<a href='displayitem.jsp?id=" + item.getID() + "' class='title'>" + item.getTitle() + "</a>"
+                + "<a href='itemview.jsp?id=" + item.getID() + "' class='title'>" + item.getTitle() + "</a>"
                 + "<p>" + item.getDescription()
-                + "<a href='displayitem.jsp?id=" + item.getID() + "'>Learn more</a></p><hr>"
+                + "<a href='itemview.jsp?id=" + item.getID() + "'>Learn more</a></p><hr>"
                 + "<div class='price pull-left'>";
 
         resultItem += "<span class='price-old'>"+searchID+"</span>"
                 + "<span class='price-new'>$399.00</span>"
                 + "</div><div class='pull-right'><div class='stars pull-left'></div>"
-                + "<a href='displayitem.jsp?id=" + item.getID() + "' class='pull-left'>5 reviews(s)</a></div>"
+                + "<a href='itemview.jsp?id=" + item.getID() + "' class='pull-left'>5 reviews(s)</a></div>"
                 + "<div class='clearfix'></div><hr><div class='cart-button'>"
-                + "<a href='displayitem.jsp?id=" + item.getID() + "' class='btn btn-primary pull-left'>more Information</a></div></div></div></li>";
+                + "<a href='itemview.jsp?id=" + item.getID() + "' class='btn btn-primary pull-left'>more Information</a></div></div></div></li>";
 
         buffer += resultItem;
 
