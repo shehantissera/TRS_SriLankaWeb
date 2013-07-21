@@ -12,13 +12,13 @@
     <head>
 
         <%@ include file="inc_head.jsp" %> 
-        
+
     </head>
     <body>
         <%@ include file="inc_options.jsp" %> 
         <%@ include file="inc_topNaviBar.jsp" %> 
         <%@ include file="inc_accountStat.jsp" %> 
-        
+
         <br><br><br><br><br>
         <div class="site-container">
             <ul class="breadcrumb container-box">
@@ -30,13 +30,19 @@
             <div class="container entry-content about-us-page">
                 <div class="row">
                     <div class="span12">
-                        <h3 class="page-title">Result</h3>
+                        <h3 class="page-title">${Title}</h3>
                     </div>
                     <div class="span6">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quisquam, culpa, soluta hic aperiam porro ipsum nisi optio necessitatibus commodi dolorum sapiente voluptatem officiis similique maiores! Quaerat, quisquam quibusdam quam iure vel accusamus nisi velit est at et temporibus sunt delectus dolorem. Reprehenderit, possimus aperiam iste hic repudiandae tempora sit laborum ut velit id! Obcaecati at architecto in vitae porro.</p>
+                        ${Description}
                     </div>
+                    ${VerificationInput}
                 </div>
-
+                <div class="row">
+                    <center>
+                        <input type="button" class="btn btn-primary" name="home" value="Home" onclick="window.location.href = 'index.jsp'"/>
+                        <input style="${display}" type="button" class="btn btn-primary" name="again" value="${BtnValue}" onclick="window.location.href = '${BtnPath}'"/>
+                    </center>
+                </div>
             </div>
         </div>
 

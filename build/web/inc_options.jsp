@@ -9,7 +9,7 @@
     <div class="options">
         <div class="center layout">
             <label>Layout</label><br><br>
-            <a href="#" class="standart active">standart</a>
+            <a href="#" class="standart active">standard</a>
             <a href="#" class="boxed">boxed</a>
             <a href="#" class="wide">wide</a>
             <div class="clearfix"></div>
