@@ -3,8 +3,10 @@
 <%@ page language="java" import="Models.Service" %>
 <%@ page language="java" import="Models.DBCON" %>
 <%@ page language="java" import="Models.Tour" %>
+<%@ page language="java" import="Models.SendEmails" %>
 <%@ page language="java" import="Models.Sight" %>
 <%@ page language="java" import="Models.SearchResultItem" %>
+<%@ page language="java" import="Models.UniqueKeyGenerator" %>
 <% response.setContentType("text/html");%>
 <%
     long searchID = Long.parseLong(request.getParameter("q"));
@@ -104,7 +106,18 @@
             item.setTitle(tourRec.getTitle());
             item.setDescription(tourRec.getItinary());
         }
-
+        
+        UniqueKeyGenerator key = new UniqueKeyGenerator();
+        String message = "Hi Someone somthing,<br><br>"+
+                "Thank you for registering with TRS-Srilanka.com.<br>"+
+                "To activate your account please copy the verification code given below and validate your account in TRS-SriLanka verification page.<br><br>"+
+                "<i>Verification code : " + key.generateNewKey3() +"</i><br><br>"+
+                "Thank you!<br><br>"+
+                "Regards<br>"+
+                "<b>Administration</b><br>"+
+                "TRS-SriLanka.com";
+        SendEmails mail = new SendEmails();
+        mail.sendMail("tistus@gmail.com", "shehanproductions@ymail.com", "TRS-SriLanka - User Registration",message);
         resultItem += "<li><div class='row'><a href='displayitem.jsp?id=" + item.getID() + "' class='img span3'><img src='content/product-list-1.png' alt=''></a>"
                 + "<div class='product-caption span6'>"
                 + "<a href='itemview.jsp?id=" + item.getID() + "' class='title'>" + item.getTitle() + "</a>"
