@@ -5,6 +5,7 @@
 package Controller;
 
 import Models.Record;
+import Models.SendEmails;
 import Models.UniqueKeyGenerator;
 import Models.User;
 import java.io.IOException;
@@ -39,19 +40,20 @@ public class UserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            if(request.getParameter("addUser") != null){
+            if (request.getParameter("addUser") != null) {
                 HttpSession session = request.getSession(true);
                 String USID = "";
-                try{
+                try {
                     USID = session.getAttribute("USID").toString();
-                }catch(Exception e){
+                } catch (Exception e) {
                     USID = "0";
                 }
                 java.util.Date date = new java.util.Date();
-                
+
                 User user = new User();
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
-                
+                long verificationKey = key.generateNewKey3();
+
                 user.setUSID(key.generateNewKey());
                 user.setFname(request.getParameter("fname"));
                 user.setLname(request.getParameter("lname"));
@@ -62,46 +64,57 @@ public class UserController extends HttpServlet {
                 user.setCountry(request.getParameter("country"));
                 user.setUsertype(request.getParameter("usertype"));
                 user.setAccountStatus("New");
-                
+
                 User rslt = user.insertUser(user);
-                if(rslt != null){
-                    request.setAttribute("insert","success");
-                    request.setAttribute("Title","User Registration");
+                if (rslt != null) {
+                    request.setAttribute("insert", "success");
+                    request.setAttribute("Title", "User Registration");
                     request.setAttribute("Description", "<p class='text-success'>Thank you for registering with us!<br/>Please enter the verification number which we send for the email address you registered with.</p>");
                     request.setAttribute("BtnValue", "verify user");
-                    request.setAttribute("BtnPath","#");
+                    request.setAttribute("BtnPath", "#");
                     request.setAttribute("display", "display:none;");
-                    request.setAttribute("VerificationInput", "<div class=\"span6\">\n" +
-"                        <form action=\"userVerification\" method=\"post\" name=\"veriForm\">\n" +
-"                            <p>Please enter the verification code below.\n" +
-"                            <input name=\"verificationCode\" type=\"text\"/><input type=\"submit\" class=\"btn btn-primary\" name=\"again\" value=\"Verify\" />\n" +
-"                        </p>\n" +
-"                        </form>\n" +
-"                    </div>");
-                    
+                    request.setAttribute("VerificationInput", "<div class=\"span6\">\n"
+                            + "                        <form action=\"userVerification\" method=\"post\" name=\"veriForm\">\n"
+                            + "                            <p>Please enter the verification code below.\n"
+                            + "                            <input name=\"verificationCode\" type=\"text\"/><input type=\"submit\" class=\"btn btn-primary\" name=\"again\" value=\"Verify\" />\n"
+                            + "                        </p>\n"
+                            + "                        </form>\n"
+                            + "                    </div>");
+
                     Record newrec = new Record();
                     newrec.setRECID(key.generateNewKey());
-                    if(!USID.equals("0")){
+                    if (!USID.equals("0")) {
                         newrec.setUSID(Long.parseLong(USID));
-                    }else{
+                    } else {
                         newrec.setUSID(user.getUSID());
                     }
-                    newrec.setREFID(user.getUSID());
+                    newrec.setREFID(verificationKey);
                     newrec.setTask("Insert");
                     newrec.setDatetime(new Timestamp(date.getTime()).toString());
                     newrec.insertRecordStatus(newrec);
-                }else{
-                    request.setAttribute("insert","error");
-                    request.setAttribute("Title","User Registration");
+
+                    String message = "Hi "+user.getFname()+" "+ user.getLname()+",<br><br>"
+                            + "Thank you for registering with TRS-Srilanka.com.<br>"
+                            + "To activate your account please copy the verification code given below and validate your account in TRS-SriLanka verification page.<br><br>"
+                            + "<i>Verification code : " + verificationKey + "</i><br><br>"
+                            + "Thank you!<br><br>"
+                            + "Regards<br>"
+                            + "<b>Administration</b><br>"
+                            + "TRS-SriLanka.com";
+                    SendEmails mail = new SendEmails();
+                    mail.sendMail("tistus@gmail.com", "shehanproductions@ymail.com", "TRS-SriLanka - User Registration", message);
+                } else {
+                    request.setAttribute("insert", "error");
+                    request.setAttribute("Title", "User Registration");
                     request.setAttribute("Description", "<p class='text-error'>There was an error adding the registering your user information.<br/>Please try again soon.</p>");
                     request.setAttribute("BtnValue", "Try Again");
-                    request.setAttribute("BtnPath","create_account.jsp");
+                    request.setAttribute("BtnPath", "create_account.jsp");
                     request.setAttribute("display", "display:none;");
                 }
                 request.getRequestDispatcher("commonresult.jsp").forward(request, response);
                 response.sendRedirect("commonresult.jsp");
             }
-        } finally {            
+        } finally {
             out.close();
         }
     }
