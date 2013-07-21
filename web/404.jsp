@@ -47,6 +47,8 @@
                     <div class="span12">
                         <div class="top">404</div>
                         <div class="bottom">the page cannot be found</div>
+                    </div>
+                    <div class="span12">
                         <center><input type="button" class="btn btn-primary" name="home" value="Home" onclick="window.location.href = 'index.jsp'"/></center>
                     </div>
             </div>
