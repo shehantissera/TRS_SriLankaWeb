@@ -47,7 +47,7 @@ public class ToursController extends HttpServlet {
                 Tour tour = new Tour();
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
                 
-                tour.setTRID(key.generateNewKey());
+                tour.setTRID(key.generateNewKey3());
                 tour.setTitle(request.getParameter("title"));
                 tour.setItinary(request.getParameter("itinary"));
                 tour.setNoOfDays(request.getParameter("noOfDays"));

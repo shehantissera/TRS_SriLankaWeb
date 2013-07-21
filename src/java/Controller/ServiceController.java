@@ -49,7 +49,7 @@ public class ServiceController extends HttpServlet {
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
                 long GEOID = key.generateNewKey();
                 
-                service.setSVID(key.generateNewKey());
+                service.setSVID(key.generateNewKey3());
                 service.setCompanyname(request.getParameter("companyname"));
                 service.setProvidername(request.getParameter("providername"));
                 service.setDescription(request.getParameter("description"));
