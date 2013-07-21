@@ -2656,7 +2656,67 @@ input.search-query + .btn{
         display: inline-block;
         width: 55px;
         height: 11px;
+        background: url("../img/stars.png") no-repeat 100% top;
+    }
+    .stars10{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 10% top;
+    }
+    .stars9{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
         background: url("../img/stars.png") no-repeat 20% top;
+    }
+    .stars8{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 30% top;
+    }
+    .stars7{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 40% top;
+    }
+    .stars6{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 50% top;
+    }
+    .stars5{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 60% top;
+    }
+    .stars4{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 70% top;
+    }
+    .stars3{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 80% top;
+    }
+    .stars2{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 90% top;
+    }
+    .stars1{
+        display: inline-block;
+        width: 55px;
+        height: 11px;
+        background: url("../img/stars.png") no-repeat 100% top;
     }
     .sidebar-list-products li .content .price{
         margin-top: 6px;
