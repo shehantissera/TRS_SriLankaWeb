@@ -53,8 +53,9 @@ public class UserController extends HttpServlet {
                 User user = new User();
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
                 long verificationKey = key.generateNewKey3();
+                long USIDKey = key.generateNewKey();
 
-                user.setUSID(key.generateNewKey());
+                user.setUSID(USIDKey);
                 user.setFname(request.getParameter("fname"));
                 user.setLname(request.getParameter("lname"));
                 user.setAgeRange(request.getParameter("ageRange"));
@@ -69,17 +70,17 @@ public class UserController extends HttpServlet {
                 if (rslt != null) {
                     request.setAttribute("insert", "success");
                     request.setAttribute("Title", "User Registration");
-                    request.setAttribute("Description", "<p class='text-success'>Thank you for registering with us!<br/>Please enter the verification number which we send for the email address you registered with.</p>");
+                    request.setAttribute("Description", "<p class='text-success'>Thank you for registering with us!<br/>Please enter the verification number which we send for the email address you registered with before proceeding.</p>");
                     request.setAttribute("BtnValue", "verify user");
                     request.setAttribute("BtnPath", "#");
                     request.setAttribute("display", "display:none;");
-                    request.setAttribute("VerificationInput", "<div class=\"span6\">\n"
-                            + "                        <form action=\"userVerification\" method=\"post\" name=\"veriForm\">\n"
-                            + "                            <p>Please enter the verification code below.\n"
-                            + "                            <input name=\"verificationCode\" type=\"text\"/><input type=\"submit\" class=\"btn btn-primary\" name=\"again\" value=\"Verify\" />\n"
-                            + "                        </p>\n"
-                            + "                        </form>\n"
-                            + "                    </div>");
+                    request.setAttribute("VerificationInput", "<div class=\"span6\">\n" +
+"                        <form class=\"form-search\" action=\"userVerification\" name=\"veriForm\">\n" +
+"                            <p>Please enter the verification code below.</p>\n" +
+"                            <input name=\"verificationCode\" type=\"text\" class=\"input-medium search-query\">\n" +
+"                            <button type=\"submit\" class=\"btn btn-primary\">Verify</button>\n" +
+"                        </form>\n" +
+"                    </div>");
 
                     Record newrec = new Record();
                     newrec.setRECID(key.generateNewKey());
