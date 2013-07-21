@@ -66,6 +66,18 @@ public class UserController extends HttpServlet {
                 User rslt = user.insertUser(user);
                 if(rslt != null){
                     request.setAttribute("insert","success");
+                    request.setAttribute("Title","User Registration");
+                    request.setAttribute("Description", "<p class='text-success'>Thank you for registering with us!<br/>Please enter the verification number which we send for the email address you registered with.</p>");
+                    request.setAttribute("BtnValue", "verify user");
+                    request.setAttribute("BtnPath","#");
+                    request.setAttribute("display", "display:none;");
+                    request.setAttribute("VerificationInput", "<div class=\"span6\">\n" +
+"                        <form action=\"userVerification\" method=\"post\" name=\"veriForm\">\n" +
+"                            <p>Please enter the verification code below.\n" +
+"                            <input name=\"verificationCode\" type=\"text\"/><input type=\"submit\" class=\"btn btn-primary\" name=\"again\" value=\"Verify\" />\n" +
+"                        </p>\n" +
+"                        </form>\n" +
+"                    </div>");
                     
                     Record newrec = new Record();
                     newrec.setRECID(key.generateNewKey());
@@ -80,9 +92,14 @@ public class UserController extends HttpServlet {
                     newrec.insertRecordStatus(newrec);
                 }else{
                     request.setAttribute("insert","error");
+                    request.setAttribute("Title","User Registration");
+                    request.setAttribute("Description", "<p class='text-error'>There was an error adding the registering your user information.<br/>Please try again soon.</p>");
+                    request.setAttribute("BtnValue", "Try Again");
+                    request.setAttribute("BtnPath","create_account.jsp");
+                    request.setAttribute("display", "display:none;");
                 }
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                response.sendRedirect("login.jsp");
+                request.getRequestDispatcher("commonresult.jsp").forward(request, response);
+                response.sendRedirect("commonresult.jsp");
             }
         } finally {            
             out.close();

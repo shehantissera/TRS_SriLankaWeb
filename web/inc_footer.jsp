@@ -67,7 +67,7 @@
 </footer>
 <div class="container footer-second">
     <div class="row">
-        <div class="span3">Copyright &copy; TRSSriLanka.com, 2013</div>
+        <div class="span3">Copyright &copy; TRS-SriLanka.com, 2013</div>
         <address class="span3 img adress"><a href="http://www.srilanka-trips.com/shehan-doc/shehan-online/">Shehan Productions</a><br>shehanproductions@ymail.com</address>
         <div class="span3 img phone"><span>Call Us:</span> +94 (077) 072-72-45<br> <span>Facebook:</span> facebook.com/shehan.tis</div>
         <div class="span3 payments">

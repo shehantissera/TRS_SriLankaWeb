@@ -64,6 +64,10 @@ public class SightsController extends HttpServlet {
                 Sight rslt = sight.insertSight(sight);
                 if(rslt != null){
                     request.setAttribute("insert","success");
+                    request.setAttribute("Title","Adding a Sight");
+                    request.setAttribute("Description", "<p class='text-success'>The sight details were added into the system successfully!<br/>Thank you for your support.</p>");
+                    request.setAttribute("BtnValue", "Add another sight");
+                    request.setAttribute("BtnPath","create_sight.jsp");
                     
                     Record newrec = new Record();
                     newrec.setRECID(key.generateNewKey());
@@ -80,9 +84,13 @@ public class SightsController extends HttpServlet {
                     geo.insertGEOLocation(geo);
                 }else{
                     request.setAttribute("insert","error");
+                    request.setAttribute("Title","Adding a Sight");
+                    request.setAttribute("Description", "<p class='text-error'>There was an error adding the Sight details into the system.<br/>Please try again soon.</p>");
+                    request.setAttribute("BtnValue", "Try again");
+                    request.setAttribute("BtnPath","create_sight.jsp");
                 }
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                response.sendRedirect("login.jsp");
+                request.getRequestDispatcher("commonresult.jsp").forward(request, response);
+                response.sendRedirect("commonresult.jsp");
             }
         } finally {            
             out.close();

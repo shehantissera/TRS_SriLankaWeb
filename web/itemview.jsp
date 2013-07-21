@@ -10,58 +10,8 @@
 <%@ page language="java" import="Models.Sight" %>
 <%@ page language="java" import="Models.SearchResultItem" %>
 <% response.setContentType("text/html");%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html>
-
-    <head>
-
-        <%@ include file="inc_head.jsp" %> 
-
-    </head>
-    <body>
-        <%@ include file="inc_options.jsp" %> 
-        <%@ include file="inc_topNaviBar.jsp" %> 
-        <%@ include file="inc_accountStat.jsp" %> 
-        <div class="container-box">
-           <%@ include file="inc_search.jsp" %> 
-        </div>
-
-        <div class="site-container">
-            <div class="header-one-box">
-                <ul id="header-one">
-                    <li>
-                        <img src="content/colomboNightLife.jpg" alt="Slider image">
-                        <div class="slider-border"><div class="border"></div></div>
-                        <div class="title">
-                            <span>2013</span>
-                            <h6>Colombo night life</h6>
-                            <div class="slider-button-box">
-                                <div class="btn-ads-container">
-                                    <button class="btn-ads" type="button">
-                                        <span class="flip-container">
-                                            <span class="back">Now</span>
-                                            <span class="front">View</span>
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="site-container">
-            <ul class="breadcrumb container-box">
-                <li><a href="#">Home</a></li>
-                <li class="active">Category</li>
-            </ul>
-        </div>
-        
-        
 <%
-    long searchID = Long.parseLong(request.getParameter("q"));
+    long searchID = Long.parseLong(request.getParameter("id"));
     DBCON ob = new DBCON();
     Connection con = null;
     PreparedStatement ps = null;
@@ -158,9 +108,61 @@
             item.setTitle(tourRec.getTitle());
             item.setDescription(tourRec.getItinary());
         }
+%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <%@ include file="inc_head.jsp" %> 
+
+    </head>
+    <body>
+        <%@ include file="inc_options.jsp" %> 
+        <%@ include file="inc_topNaviBar.jsp" %> 
+        <%@ include file="inc_accountStat.jsp" %> 
+        <div class="container-box">
+           <%@ include file="inc_search.jsp" %> 
+        </div>
+
+        <div class="site-container">
+            <div class="header-one-box">
+                <ul id="header-one">
+                    <li>
+                        <img src="content/colomboNightLife.jpg" alt="Slider image">
+                        <div class="slider-border"><div class="border"></div></div>
+                        <div class="title">
+                            <span>2013</span>
+                            <h6>Colombo night life</h6>
+                            <div class="slider-button-box">
+                                <div class="btn-ads-container">
+                                    <button class="btn-ads" type="button">
+                                        <span class="flip-container">
+                                            <span class="back">Now</span>
+                                            <span class="front">View</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-container">
+            <ul class="breadcrumb container-box">
+                <li><a href="#">Home</a></li>
+                <li class="active">Category</li>
+            </ul>
+        </div>
+        
+     
+        
+<%
 
         resultItem += "<div class='site-container'><div class='container entry-content'><div class='row'><div class='span12'>"+
-                        "<h1 class='page-title'>Mix Cady Collins Dress</h1>"+
+                        "<h1 class='page-title'>"+item.getTitle()+"</h1>"+
                         "<div class='row product-viev'><div class='span4 image'>"+
                                 "<img id='main-product-image' src='content/product-small-img-1.png' data-zoom-image='content/product-big-img-1.png' alt=''>"+
                                 "<div id='product-images'>"+
@@ -174,7 +176,7 @@
                             "<div class='span8 product-caption'><div class='row'><div class='top span8'>"+
                                         "<div class='stars'></div> <a href='#' class='count-review'>5 rewiew(s)</a> | <a href='#' class='add-review'>Add your review</a>"+
                                     "</div><p class='span8'>"+
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec posuere odio. Phasellus odio lectus, ultrices non pretium ac, mollis id elit. Fusce tempor tellus non felis tempus vestibulum. Donec molestie purus sem. Suspendisse a neque quam. Etiam mollis volutpat odio, id euismod justo gravida a. Aliquam erat volutpat. Phasellus faucibus venenatis lorem, vitae commodo elit pretium et."+
+                                    item.getDescription()+
                                     "</p>"+
                                 "</div>"+
                                 "<hr>"+
@@ -183,7 +185,7 @@
                                         "<span class='availabillity'>Availabillity:</span> <span class='in-stock'>In stock</span><br>"+
                                         "<span class='sku'>Sku:</span> <span class='sku-status'>Candles Ov</span>"+
                                     "</div>"+
-                                    "<div class='span5 row pull-right'>'+
+                                    "<div class='span5 row pull-right'>"+
                                         "<select class='first'>"+
                                             "<option>Select a size</option>"+
                                             "<option>12</option>"+
@@ -229,27 +231,7 @@
                                     "<div class='tab-pane active' id='description'>"+
                                         "<h3>Description</h3>"+
                                         "<p>"+
-                                            "Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum. Etiam mollis volutpat odio, id euismod justo gravida a. Aliquam erat volutpat. Phasellus faucibus venenatis lorem, vitae commodo elit pretium et. Duis rhoncus lobortis congue. Vestibulum et purus dui, vel porta lectus. Sed vulputate pulvinar adipiscing."+
-                                        "</p>"+
-                                        "<ul>"+
-                                            "<li>She was walking to the mall.</li>"+
-                                            "<li>Ted might eat the cake.</li>"+
-                                            "<li>You must go right now.</li>"+
-                                            "<li>Words were spoken.</li>"+
-                                            "<li>The teacher is writing a report.</li>"+
-                                        "</ul>"+
-                                        "<p>"+
-                                            "Here are some verb phrase examples where the verb phrase is the predicate of a sentence. In this case, the verb phrase consists of the main verb plus any auxiliary, or helping, verbs. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede."+
-                                        "</p>"+
-                                        "<ol>"+
-                                            "<li>Shipping & Delivery.</li>"+
-                                            "<li>Privacy & Security.</li>"+
-                                            "<li>Returns & Replacements.</li>"+
-                                            "<li>Payment, Pricing & Promotions.</li>"+
-                                            "<li>Viewing Orders.</li>"+
-                                        "</ol>"+
-                                        "<p>"+
-                                            "Next are some verb phrase examples of verb phrases where the phrase has a single function which means it can act like an adverb or an adjective. The phrase would include the verb and any modifiers, complements, or objects. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec posuere odio. Proin vel ultrices erat. "+
+                                            item.getDescription()+
                                         "</p>"+
                                     "</div>"+
                                     "<div class='tab-pane product-reviews' id='reviews'>"+
@@ -257,7 +239,7 @@
                                         "<ul>"+
                                             "<li>"+
                                                 "<div class='title'>"+
-                                                    "<span>Mike Example,</span> <time datetime="2013-11-03">03.11.2013</time>"+
+                                                    "<span>Mike Example,</span> <time datetime='2013-11-03'>03.11.2013</time>"+
                                                 "</div>"+
                                                 "<div class='review-rating'>"+
                                                     "<span>Quality <span class='stars'></span></span> <span class='separator'>|</span>"+
@@ -309,62 +291,57 @@
                                             "Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum. Etiam mollis volutpat odio, id euismod justo gravida a. Aliquam erat volutpat. Phasellus faucibus venenatis lorem, vitae commodo elit pretium et. Duis rhoncus lobortis congue. Vestibulum et purus dui, vel porta lectus. Sed vulputate pulvinar adipiscing."+
                                         "</p>"+
                                         "<p>"+
-                                            "Here are some verb phrase examples where the verb phrase is the predicate of a sentence. In this case, the verb phrase consists of the main verb plus any auxiliary, or helping, verbs. Nulla nec velit. 
-
-       Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede."
-                                        "</p>"
-                                        "<p>"
-                                            "Next are some verb phrase examples of verb phrases where the phrase has a single function which means it 
-                                            can act like an adverb or an adjective. The phrase would include the verb and any modifiers, complements, 
-                                            or objects. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis.  
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec posuere odio. Proin vel ultrices erat."
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="carousel-grid">
-                                    <div class="title-one"><span>Related Products</span><div class="carousel-pager one pull-right"></div></div>
-                                    <ul class="product-grid">
+                                            "Here are some verb phrase examples where the verb phrase is the predicate of a sentence. In this case, the verb phrase consists of the main verb plus any auxiliary, or helping, verbs. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede."+
+                                        "</p>"+
+                                        "<p>"+
+                                            "Next are some verb phrase examples of verb phrases where the phrase has a single function which means it  can act like an adverb or an adjective. The phrase would include the verb and any modifiers, complements, or objects. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec posuere odio. Proin vel ultrices erat."+
+                                        "</p>"+
+                                    "</div>"+
+                               "</div>"+
+                                "<div class='carousel-grid'>"+
+                                    "<div class='title-one'><span>Related Products</span><div class='carousel-pager one pull-right'></div></div>"+
+                                    "<ul class='product-grid'>"+
                                         
-                                        <li>
-                                            <article>
-                                                <div class="border-top"></div>
-                                                <div class="border-left"></div>
-                                                <div class="border-right"></div>
-                                                <div class="border-bottom"></div>
-                                                <a href="product-view.html"><img src="content/baner-img-6.png" alt=""></a>
-                                                <div class="product-caption">
-                                                    <div class="price">
-                                                        <span>$399.00</span>
-                                                    </div>
-                                                    <div class="inner">
-                                                        <h3 class="title"><a href="product-view.html" title="Caramel & Black Collared BODY Dress">Caramel & Black Collared BODY Dress</a></h3>
-                                                        <div class="cart-button">
-                                                            <a href="#" class="btn btn-primary">Add to cart</a>
-                                                            <a href="#" class="wishlist-link">Add to wishlist</a>
-                                                            <a href="#" class="compaire-link">Add to compare</a>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </li>
+                                        "<li>"+
+                                            "<article>"+
+                                                "<div class='border-top'></div>"+
+                                                "<div class='border-left'></div>"+
+                                                "<div class='border-right'></div>"+
+                                                "<div class='border-bottom'></div>"+
+                                                "<a href='product-view.html'><img src='content/baner-img-6.png' alt=''></a>"+
+                                                "<div class='product-caption'>"+
+                                                    "<div class='price'>"+
+                                                        "<span>$399.00</span>"+
+                                                    "</div>"+
+                                                    "<div class='inner'>"+
+                                                        "<h3 class='title'><a href='product-view.html' title='Caramel & Black Collared BODY Dress'>Caramel & Black Collared BODY Dress</a></h3>"+
+                                                        "<div class='cart-button'>"+
+                                                            "<a href='#' class='btn btn-primary'>Add to cart</a>"+
+                                                            "<a href='#' class='wishlist-link'>Add to wishlist</a>"+
+                                                            "<a href='#' class='compaire-link'>Add to compare</a>"+
+                                                            "<div class='clearfix'></div>"+
+                                                        "</div>"+
+                                                    "</div>"+
+                                                "</div>"+
+                                            "</article>"+
+                                        "</li>"+
                                         
-                                    </ul>
-                                    <div class="carousel-prev">&lt;</div>
-                                    <div class="carousel-next">&gt;</div>
-                                </div>
-                            </div>
+                                    "</ul>"+
+                                    "<div class='carousel-prev'>&lt;</div>"+
+                                    "<div class='carousel-next'>&gt;</div>"+
+                                "</div>"+
+                            "</div>"+
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>";
+                        "</div>"+
+                    "</div>"+
+                "</div>"+
+            "</div>"+
+        "</div>";
 
         buffer += resultItem;
 
-        request.setAttribute("resultList", buffer);
-        request.getRequestDispatcher("searchresults.jsp").forward(request, response);
+        //request.setAttribute("resultList", buffer);
+        //request.getRequestDispatcher("searchresults.jsp").forward(request, response);
         
         
     } catch (Exception e) {
@@ -380,7 +357,7 @@
     }
 %>
 
-        
+        <% out.println(buffer); %>
         
         <!--<div class="site-container">
             <div class="container entry-content">

@@ -59,6 +59,10 @@ public class ToursController extends HttpServlet {
                 Tour rslt = tour.insertTour(tour);
                 if(rslt != null){
                     request.setAttribute("insert","success");
+                    request.setAttribute("Title","Adding a Tour");
+                    request.setAttribute("Description", "<p class='text-success'>The tour details were added into the system successfully!<br/>Thank you for your support.</p>");
+                    request.setAttribute("BtnValue", "Add another tour");
+                    request.setAttribute("BtnPath","create_tours.jsp");
                     
                     Record newrec = new Record();
                     newrec.setRECID(key.generateNewKey());
@@ -69,9 +73,13 @@ public class ToursController extends HttpServlet {
                     newrec.insertRecordStatus(newrec);
                 }else{
                     request.setAttribute("insert","error");
+                    request.setAttribute("Title","Adding a Tour");
+                    request.setAttribute("Description", "<p class='text-error'>There was an error adding the tour details into the system.<br/>Please try again soon.</p>");
+                    request.setAttribute("BtnValue", "try again");
+                    request.setAttribute("BtnPath","create_tours.jsp");
                 }
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                response.sendRedirect("login.jsp");
+                request.getRequestDispatcher("commonresult.jsp").forward(request, response);
+                response.sendRedirect("commonresult.jsp");
             }
         } finally {            
             out.close();
