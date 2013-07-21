@@ -49,7 +49,7 @@ public class SightsController extends HttpServlet {
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
                 long GEOID = key.generateNewKey();
                 
-                sight.setSID(key.generateNewKey());
+                sight.setSID(key.generateNewKey3());
                 sight.setName(request.getParameter("name"));
                 sight.setBrief(request.getParameter("brief"));
                 sight.setLandline(request.getParameter("landline"));
