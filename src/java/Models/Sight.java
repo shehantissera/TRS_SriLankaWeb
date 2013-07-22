@@ -6,6 +6,7 @@ package Models;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -101,6 +102,14 @@ public class Sight {
         this.GEOID = GEOID;
     }
     
+    public ArrayList getCategory() {
+        return category;
+    }
+
+    public void setCategory(ArrayList category) {
+        this.category = category;
+    }
+    
     private long SID;
     private String name;
     private String brief;
@@ -112,6 +121,7 @@ public class Sight {
     private String child;
     private long LOCID;
     private long GEOID;
+    private ArrayList category;
     
     public Sight insertSight(Sight rec){
         Sight flag = null;

@@ -11,6 +11,7 @@ import Models.UniqueKeyGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,15 +41,15 @@ public class SightsController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            if(request.getParameter("addSight") != null){
+            if (request.getParameter("addSight") != null) {
                 HttpSession session = request.getSession(true);
                 String USID = session.getAttribute("USID").toString();
                 java.util.Date date = new java.util.Date();
-                
+
                 Sight sight = new Sight();
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
                 long GEOID = key.generateNewKey();
-                
+
                 sight.setSID(key.generateNewKey3());
                 sight.setName(request.getParameter("name"));
                 sight.setBrief(request.getParameter("brief"));
@@ -61,14 +62,24 @@ public class SightsController extends HttpServlet {
                 sight.setGEOID(GEOID);
                 sight.setLOCID(0);
                 
+                ArrayList categoryList =new ArrayList();
+                String[] checkboxNamesList = request.getParameterValues("categories");
+                for (int i = 0; i < checkboxNamesList.length; i++) {
+                    String candidateid = checkboxNamesList[i];
+                    if (candidateid != null) {
+                        categoryList.add(candidateid.toString());
+                    }
+                }
+                sight.setCategory(categoryList);
+
                 Sight rslt = sight.insertSight(sight);
-                if(rslt != null){
-                    request.setAttribute("insert","success");
-                    request.setAttribute("Title","Adding a Sight");
+                if (rslt != null) {
+                    request.setAttribute("insert", "success");
+                    request.setAttribute("Title", "Adding a Sight");
                     request.setAttribute("Description", "<p class='text-success'>The sight details were added into the system successfully!<br/>Thank you for your support.</p>");
                     request.setAttribute("BtnValue", "Add another sight");
-                    request.setAttribute("BtnPath","create_sight.jsp");
-                    
+                    request.setAttribute("BtnPath", "create_sight.jsp");
+
                     Record newrec = new Record();
                     newrec.setRECID(key.generateNewKey());
                     newrec.setUSID(Long.parseLong(USID));
@@ -76,23 +87,23 @@ public class SightsController extends HttpServlet {
                     newrec.setTask("Insert");
                     newrec.setDatetime(new Timestamp(date.getTime()).toString());
                     newrec.insertRecordStatus(newrec);
-                    
+
                     GeoLocation geo = new GeoLocation();
                     geo.setGEOID(GEOID);
                     geo.setLongitude(request.getParameter("longitude"));
                     geo.setLattitude(request.getParameter("latitude"));
                     geo.insertGEOLocation(geo);
-                }else{
-                    request.setAttribute("insert","error");
-                    request.setAttribute("Title","Adding a Sight");
+                } else {
+                    request.setAttribute("insert", "error");
+                    request.setAttribute("Title", "Adding a Sight");
                     request.setAttribute("Description", "<p class='text-error'>There was an error adding the Sight details into the system.<br/>Please try again soon.</p>");
                     request.setAttribute("BtnValue", "Try again");
-                    request.setAttribute("BtnPath","create_sight.jsp");
+                    request.setAttribute("BtnPath", "create_sight.jsp");
                 }
                 request.getRequestDispatcher("commonresult.jsp").forward(request, response);
                 response.sendRedirect("commonresult.jsp");
             }
-        } finally {            
+        } finally {
             out.close();
         }
     }
