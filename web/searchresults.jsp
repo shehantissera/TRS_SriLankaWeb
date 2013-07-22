@@ -29,8 +29,8 @@
                         <img src="content/adamspeak.jpg" alt="Slider image">
                         <div class="slider-border"><div class="border"></div></div>
                         <div class="title">
-                            <span>2013</span>
-                            <h6>Sunrise at adams peak</h6>
+                            <span>Adam's Peak</span>
+                            <h6>Adam's Peak, is a 2,243 m (7,359 ft) tall conical mountain located in central Sri Lanka.</h6>
                             <div class="slider-button-box">
                                 <div class="btn-ads-container">
                                     <button class="btn-ads" type="button">

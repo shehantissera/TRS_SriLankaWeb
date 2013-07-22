@@ -552,18 +552,18 @@
                         <div class="carousel-grid home brands">
                             <div class="title-two"><div>&nbsp;</div><div>OFFICIAL<br class="visible-567"> SPONSORS</div><div class="carousel-pager one"></div></div>
                             <ul class="content-list">
-                                <li><a href="#"><img src="content/brand-1.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-2.png" alt=""></a></li>
+                                <li><a href="#"><img src="content/brand-1.png" alt="MErickson Tours & Travels"></a></li>
+                                <li><a href="#"><img src="content/brand-2.png" alt="Cinnamon Hotels & Resort"></a></li>
                                 <li><a href="#"><img src="content/brand-3.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-4.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-5.png" alt=""></a></li>
+                                <li><a href="#"><img src="content/brand-11.png" alt=""></a></li>
+                                <li><a href="#"><img src="content/brand-4.png" alt="Sri Lankan Airlines"></a></li>
+                                <li><a href="#"><img src="content/brand-5.png" alt="Emirates"></a></li>
                                 <li><a href="#"><img src="content/brand-6.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-6.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-5.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-4.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-3.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-2.png" alt=""></a></li>
-                                <li><a href="#"><img src="content/brand-1.png" alt=""></a></li>
+                                <li><a href="#"><img src="content/brand-7.png" alt="British Airways"></a></li>
+                                <li><a href="#"><img src="content/brand-8.png" alt=""></a></li>
+                                <li><a href="#"><img src="content/brand-9.png" alt=""></a></li>
+                                <li><a href="#"><img src="content/brand-10.png" alt=""></a></li>
+                                <li><a href="#"><img src="content/brand-12.png" alt=""></a></li>
                             </ul>
                             <div class="carousel-prev">&lt;</div>
                             <div class="carousel-next">&gt;</div>
@@ -575,17 +575,14 @@
                         <div class=row>
                             <div class="span4 about-us">
                                 <div class="title">About Sri Lanka</div>
-                                <div class="page-description">In congue nisl varius quis aliqut lentesque a tellus quam  variu. VelL varius lobortis gravida. </div>
+                                <div class="page-description">We welcome you to the "TRS-SriLanka" web site - We are offering information about best tours and hotel sight attractions in Sri Lanka. </div>
                                 <p>
-                                    Lorem ipsum, libero et luctus molestie, turpis mi sagittis nisl, a scelerisque leo nulla et 
-                                    lectus pendis dictum posuere elit, in congue nisl varius lentesque a tellus eget quam varius aliquet.
+                                    Sri Lanka is an exotic island in the Indian ocean which has attracted human beings and the gods alike from the earliest times of the history. We have beautiful serene beaches mountains, jungles explore and cultures and religions to learn.
                                 </p>
                                 <p>
-                                    Pellentesque tristique, libero et luctus molestie, a scelerisque leo nulla et lectus pendisse 
-                                    dictum posuere elit. It is a long established fact that a reade will be distracted by the 
-                                    readable content of a page when looking at its layout.  
+                                    Today Sri Lanka is heaven for tourist where you can have tour of any length. Here you can visit beaches mountains national parks all within the reach of 1 - 4 hours' drive. Our country offers beautiful scenery, colorful culture, tasty cuisine and unmatched history. The new slogan of Sri Lanka Tourism rightly says:- Refreshingly Sri Lanka - Wonder of Asia
                                 </p>
-                                <a href="#" class="btn btn-link btn-mini">More</a>
+                                <a href="about.jsp" class="btn btn-link btn-mini">More</a>
                             </div>
                             <div class="span4 news">
                                 <div class="title">News</div>
