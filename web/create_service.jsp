@@ -73,7 +73,8 @@
                             <select name="servicetype">
                                 <option disabled selected value="">Please Select</option>
                                 <option>Taxi service</option>
-                                <option>Accomadation</option>
+                                <option>Accommodation</option>
+                                <option>Other</option>
                             </select>
 
                             <label>Location:</label>
@@ -83,13 +84,19 @@
                                 <option>Afghanistan</option>
                             </select>
 
-                            <label>Category:</label>
-                            <select>
-                                <option disabled selected>Please Select</option>
-                                <option>Aaland Islands</option>
-                                <option>Afghanistan</option>
-                            </select>
-
+                            <label>Category: <span class="required">*</span></label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" id="inlineCheckbox1" value="option1"> Category 1
+                            </label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" id="inlineCheckbox2" value="option2"> Category 2
+                            </label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"> Category 3
+                            </label>
+                            
+                            <br><br>
+                            
                             <label>Longitude: <span class="required">*</span></label>
                             <input name="longitude" type="number" step="any" required title="Longitude can contain only the range from -180 to 180">
 
