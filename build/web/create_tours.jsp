@@ -72,12 +72,29 @@
                                 <option>Room only [R.O]</option>
                             </select>
 
-                            <label>Category:</label>
-                            <select>
-                                <option disabled selected>Please Select</option>
-                                <option>Aaland Islands</option>
-                                <option>Afghanistan</option>
-                            </select>
+                            <label>Category: <span class="required">*</span></label>
+                            <%@ page language="java" import="Models.DBCON" %>
+                            <%@ page language="java" import="java.sql.*" %>
+                            <%
+                                DBCON ob = new DBCON();
+                                Connection con = null;
+                                PreparedStatement ps = null;
+                                ResultSet interests = null;
+                                con = ob.createConnection();
+                                String categories = "";
+                                int count = 1;
+                                String searchINTEREST = "SELECT * FROM trs_srilanka.sys_userinterests ORDER BY IN_type ASC";
+
+                                ps = con.prepareStatement(searchINTEREST);
+                                interests = ps.executeQuery();
+                                while (interests.next()) {
+                                    categories += "<label class='checkbox inline'><input type='checkbox' id='inlineCheckbox"+count+"' value='"+interests.getString(2)+"'>"+interests.getString(2)+"</label>";
+                                    count++;
+                                }
+                                out.println(categories);
+                            %>
+                            
+                            <br><br>
 
                             <label>Starting Location:</label>
                             <select>
