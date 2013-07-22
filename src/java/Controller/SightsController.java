@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Models.Category;
 import Models.GeoLocation;
 import Models.Record;
 import Models.Sight;
@@ -62,7 +63,7 @@ public class SightsController extends HttpServlet {
                 sight.setGEOID(GEOID);
                 sight.setLOCID(0);
                 
-                ArrayList categoryList =new ArrayList();
+                ArrayList<String> categoryList =new ArrayList<String>();
                 String[] checkboxNamesList = request.getParameterValues("categories");
                 for (int i = 0; i < checkboxNamesList.length; i++) {
                     String candidateid = checkboxNamesList[i];
@@ -70,7 +71,8 @@ public class SightsController extends HttpServlet {
                         categoryList.add(candidateid.toString());
                     }
                 }
-                sight.setCategory(categoryList);
+                Category cat = new Category();
+                cat.insertCategoryDetails(categoryList,sight.getSID());
 
                 Sight rslt = sight.insertSight(sight);
                 if (rslt != null) {

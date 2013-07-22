@@ -144,7 +144,7 @@
                         </div>
                     </div>
                     <div class="span9 content">
-                        <h1>Product list</h1>
+                        <h1>Search Results</h1>
                         <div class="toolbar">
                             <div class="left-side pull-left">
                                 <div class="view-mode">

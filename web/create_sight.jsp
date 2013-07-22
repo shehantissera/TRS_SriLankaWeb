@@ -97,7 +97,7 @@
                                 ps = con.prepareStatement(searchINTEREST);
                                 interests = ps.executeQuery();
                                 while (interests.next()) {
-                                    categories += "<label class='checkbox inline'><input type='checkbox' name='categories' id='inlineCheckbox"+count+"' value='"+interests.getString(2)+"'>"+interests.getString(2)+"</label>";
+                                    categories += "<label class='checkbox inline'><input type='checkbox' name='categories' id='inlineCheckbox"+count+"' value='"+interests.getString(1)+"'>"+interests.getString(2)+"</label>";
                                     count++;
                                 }
                                 out.println(categories);
