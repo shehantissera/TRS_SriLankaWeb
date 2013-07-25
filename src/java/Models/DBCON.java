@@ -17,10 +17,24 @@ public class DBCON {
     String database = "trs_srilanka";
     String username = "root";
     String password = "";
-    public Connection createConnection(){
+    public Connection createConnection2(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://"+host+"/"+database,username,password);
+        }catch(Exception e){
+            con = null;
+        }
+        return con;
+    }
+    
+    String host2 = "jdbc:mysql://mysql-trs-srilanka.jelastic.servint.net/trs_srilanka";
+    String username2 = "root";
+    String password2 = "ILZ18UCI8k";
+    String driver = "com.mysql.jdbc.Driver";
+    public Connection createConnection(){
+        try{
+            Class.forName(driver);
+            con = DriverManager.getConnection(host2,username2,password2);
         }catch(Exception e){
             con = null;
         }
