@@ -12,7 +12,6 @@
     <head>
         <%@ include file="inc_head.jsp" %> 
     </head>
-    
     <body>
         <%@ include file="inc_options.jsp" %> 
         <%@ include file="inc_topNaviBar.jsp" %> 

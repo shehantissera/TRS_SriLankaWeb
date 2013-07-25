@@ -18,7 +18,7 @@
         <div class="nav-collapse navbar-main collapse">
             <ul class="nav">
                 <li class="dropdown">
-                    <a href="#" data-toggle="dropdown">Women</a>
+                    <a href="#" data-toggle="dropdown">Sights</a>
                     <div class="dropdown-menu span12">
                         <div class="dropdown-section pull-left">
                             <a class="title" href="#">Clothing</a>
@@ -34,7 +34,7 @@
                             </ul>
                         </div>
                         <div class="dropdown-section pull-left">
-                            <a class="title" href="#">Shoes</a>
+                            <a class="title" href="#">Accommodation</a>
                             <ul>
                                 <li><a href="#">Party Shoes</a></li>
                                 <li><a href="#">Boots</a></li>
@@ -65,7 +65,7 @@
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="#" data-toggle="dropdown">Men</a>
+                    <a href="#" data-toggle="dropdown">Accommodation</a>
                     <div class="dropdown-menu span12">
                         <div class="dropdown-section pull-left">
                             <a class="title" href="#">Be inspared</a>
@@ -106,27 +106,18 @@
                         </div>
                     </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown">Footwear</a>
-                    <ul class="dropdown-menu one">
-                        <li><a href="#">Dresses</a></li>
-                        <li><a href="#">Knitwear</a></li>
-                        <li><a href="#">Jackets & Coats</a></li>
-                        <li><a href="#">Trousers & Leggings</a></li>
-                        <li><a href="#">Cardigans</a></li>
-                    </ul>
+                
+                <li>
+                    <a href="#" data-toggle="dropdown">Services</a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="dropdown">Jewelry</a>
+                    <a href="#" data-toggle="dropdown">By Categories</a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="dropdown">Accessories</a>
+                    <a href="#" data-toggle="dropdown">By Ratings</a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="dropdown">Electronics</a>
-                </li>
-                <li>
-                    <a href="#" data-toggle="dropdown">Furniture</a>
+                    <a href="#" data-toggle="dropdown">Best of 2013</a>
                 </li>
             </ul>
         </div>
