@@ -1,1 +1,3 @@
-ErrorDocument 404 http://www.trs-srilanka.com/underconstruction.jsp
+RewriteEngine On
+RewriteRule ^(.*)$ http://trs-srilanka.jelastic.servint.net/trs-SriLankaWeb/ [R=301]
+ErrorDocument 404 http://trs-srilanka.jelastic.servint.net/trs-SriLankaWeb/underconstruction.jsp
