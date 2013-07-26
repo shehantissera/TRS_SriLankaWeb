@@ -117,6 +117,9 @@
                     <a href="#" data-toggle="dropdown">By Ratings</a>
                 </li>
                 <li>
+                    <a href="#" data-toggle="dropdown">By Location</a>
+                </li>
+                <li>
                     <a href="#" data-toggle="dropdown">Best of 2013</a>
                 </li>
             </ul>

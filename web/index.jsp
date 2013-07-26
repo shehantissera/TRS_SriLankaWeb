@@ -259,8 +259,8 @@
                     <div class="span12">
                         <div class="row home-banner">
                             <a href="#" class="span4 banner"><img src="content/sample-benner-1.png" alt=""></a>
-                            <a href="#" class="span4 banner"><img src="content/sample-benner-2.png" alt=""></a>
-                            <a href="#" class="span4 banner"><img src="content/sample-benner-3.png" alt=""></a>
+                            <a href="#" class="span4 banner"><img src="content/sample-benner-1.png" alt=""></a>
+                            <a href="#" class="span4 banner"><img src="content/sample-benner-1.png" alt=""></a>
                         </div>
                         <div class="carousel-grid home">
                             <div class="title-two"><div>&nbsp;</div><div>Recommended Products</div><div class="carousel-pager one"></div></div>
@@ -271,7 +271,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-6.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$399.00</span>
@@ -294,7 +294,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-11.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$435.00</span>
@@ -317,7 +317,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-12.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$510.00</span>
@@ -340,7 +340,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-13.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$179.00</span>
@@ -363,7 +363,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-14.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$399.00</span>
@@ -386,7 +386,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-15.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$299.00</span>
@@ -409,7 +409,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-16.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$264.00</span>
@@ -432,7 +432,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-17.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$349.00</span>
@@ -455,7 +455,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-18.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$756.00</span>
@@ -478,7 +478,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-19.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$120.00</span>
@@ -501,7 +501,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html"><img src="content/baner-img-20.png" alt=""></a>
+                                        <a href="product-view.html"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$367.00</span>
@@ -524,7 +524,7 @@
                                         <div class="border-left"></div>
                                         <div class="border-right"></div>
                                         <div class="border-bottom"></div>
-                                        <a href="product-view.html" class="image"><img src="content/baner-img-21.png" alt=""></a>
+                                        <a href="product-view.html" class="image"><img src="content/baner-img-1.png" alt=""></a>
                                         <div class="product-caption">
                                             <div class="price">
                                                 <span>$291.00</span>
@@ -575,7 +575,7 @@
                         <div class=row>
                             <div class="span4 about-us">
                                 <div class="title">About Sri Lanka</div>
-                                <div class="page-description">We welcome you to the "TRS-SriLanka" web site - We are offering information about best tours and hotel sight attractions in Sri Lanka. </div>
+                                <div class="page-description">We welcome you to the "TRS-SriLanka" web site - We are offering information about best tours, hotels and sight attractions in Sri Lanka. </div>
                                 <p>
                                     Sri Lanka is an exotic island in the Indian ocean which has attracted human beings and the gods alike from the earliest times of the history. We have beautiful serene beaches mountains, jungles explore and cultures and religions to learn.
                                 </p>
