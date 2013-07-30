@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Models.Category;
 import Models.Record;
 import Models.SendEmails;
 import Models.UniqueKeyGenerator;
@@ -11,6 +12,7 @@ import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,6 +67,17 @@ public class UserController extends HttpServlet {
                 user.setCountry(request.getParameter("country"));
                 user.setUsertype(request.getParameter("usertype"));
                 user.setAccountStatus("New");
+                
+                ArrayList<String> categoryList =new ArrayList<String>();
+                String[] checkboxNamesList = request.getParameterValues("categories");
+                for (int i = 0; i < checkboxNamesList.length; i++) {
+                    String candidateid = checkboxNamesList[i];
+                    if (candidateid != null) {
+                        categoryList.add(candidateid.toString());
+                    }
+                }
+                Category cat = new Category();
+                cat.insertCategoryDetails(categoryList,user.getUSID());
 
                 User rslt = user.insertUser(user);
                 if (rslt != null) {

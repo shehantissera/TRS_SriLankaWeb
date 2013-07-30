@@ -28,7 +28,7 @@
     Service serviceRec = new Service();
     Sight sightRec = new Sight();
     Tour tourRec = new Tour();
-    
+
     try {
 
         if (!contains) {
@@ -106,38 +106,43 @@
             item.setTitle(tourRec.getTitle());
             item.setDescription(tourRec.getItinary());
         }
-        
-        /*UniqueKeyGenerator key = new UniqueKeyGenerator();
-        String message = "Hi Someone somthing,<br><br>"+
-                "Thank you for registering with TRS-Srilanka.com.<br>"+
-                "To activate your account please copy the verification code given below and validate your account in TRS-SriLanka verification page.<br><br>"+
-                "<i>Verification code : " + key.generateNewKey3() +"</i><br><br>"+
-                "Thank you!<br><br>"+
-                "Regards<br>"+
-                "<b>Administration</b><br>"+
-                "TRS-SriLanka.com";
-        SendEmails mail = new SendEmails();
-        mail.sendMail("tistus@gmail.com", "shehanproductions@ymail.com", "TRS-SriLanka - User Registration",message);*/
-        resultItem += "<li><div class='row'><a href='displayitem.jsp?id=" + item.getID() + "' class='img span3'><img src='content/product-list-1.png' alt=''></a>"
-                + "<div class='product-caption span6'>"
-                + "<a href='itemview.jsp?id=" + item.getID() + "' class='title'>" + item.getTitle() + "</a>"
-                + "<p>" + item.getDescription()
-                + "<a href='itemview.jsp?id=" + item.getID() + "'>Learn more</a></p><hr>"
-                + "<div class='price pull-left'>";
 
-        resultItem += "<span class='price-old'>"+searchID+"</span>"
-                + "<span class='price-new'>$399.00</span>"
-                + "</div><div class='pull-right'><div class='stars pull-left'></div>"
-                + "<a href='itemview.jsp?id=" + item.getID() + "' class='pull-left'>5 reviews(s)</a></div>"
-                + "<div class='clearfix'></div><hr><div class='cart-button'>"
-                + "<a href='itemview.jsp?id=" + item.getID() + "' class='btn btn-primary pull-left'>more Information</a></div></div></div></li>";
+        /*UniqueKeyGenerator key = new UniqueKeyGenerator();
+         String message = "Hi Someone somthing,<br><br>"+
+         "Thank you for registering with TRS-Srilanka.com.<br>"+
+         "To activate your account please copy the verification code given below and validate your account in TRS-SriLanka verification page.<br><br>"+
+         "<i>Verification code : " + key.generateNewKey3() +"</i><br><br>"+
+         "Thank you!<br><br>"+
+         "Regards<br>"+
+         "<b>Administration</b><br>"+
+         "TRS-SriLanka.com";
+         SendEmails mail = new SendEmails();
+         mail.sendMail("tistus@gmail.com", "shehanproductions@ymail.com", "TRS-SriLanka - User Registration",message);*/
+        int count = 0;
+        do {
+            resultItem += "<li><div class='row'><a href='displayitem.jsp?id=" + item.getID() + "' class='img span3'><img src='content/product-list-1.png' alt=''></a>"
+                    + "<div class='product-caption span6'>"
+                    + "<a href='itemview.jsp?id=" + item.getID() + "' class='title'>" + item.getTitle() + "</a>"
+                    + "<p>" + item.getDescription()
+                    + "<a href='itemview.jsp?id=" + item.getID() + "'>Learn more</a></p><hr>"
+                    + "<div class='price pull-left'>";
+
+            resultItem += "<span class='price-old'>" + searchID + "</span>"
+                    + "<span class='price-new'>$399.00</span>"
+                    + "</div><div class='pull-right'><div class='stars pull-left'></div>"
+                    + "<a href='itemview.jsp?id=" + item.getID() + "' class='pull-left'>5 reviews(s)</a></div>"
+                    + "<div class='clearfix'></div><hr><div class='cart-button'>"
+                    + "<a href='itemview.jsp?id=" + item.getID() + "' class='btn btn-primary pull-left'>more Information</a></div></div></div></li>";
+            count++;
+
+        } while (count < 3);
 
         buffer += resultItem;
 
         request.setAttribute("resultList", buffer);
         request.getRequestDispatcher("searchresults.jsp").forward(request, response);
-        
-        
+
+
     } catch (Exception e) {
         out.println("Exception is ;" + e);
     } finally {

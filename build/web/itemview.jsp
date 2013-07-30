@@ -33,7 +33,7 @@
     Service serviceRec = new Service();
     Sight sightRec = new Sight();
     Tour tourRec = new Tour();
-    
+
     try {
 
         if (!contains) {
@@ -114,7 +114,7 @@
             item.setTitle(tourRec.getTitle());
             item.setDescription(tourRec.getItinary());
         }
-        
+
         String longitude = "";
         String latitude = "";
         String searchGEO = "SELECT * FROM trs_srilanka.sys_geolocation where GEOID=?";
@@ -142,7 +142,7 @@
         <%@ include file="inc_topNaviBar.jsp" %> 
         <%@ include file="inc_accountStat.jsp" %> 
         <div class="container-box">
-           <%@ include file="inc_search.jsp" %> 
+            <%@ include file="inc_search.jsp" %> 
         </div>
 
         <div class="site-container">
@@ -175,193 +175,192 @@
                 <li class="active">Category</li>
             </ul>
         </div>
-        
-     
-        
-<%
 
-        resultItem += "<div class='site-container'><div class='container entry-content'><div class='row'><div class='span12'>"+
-                        "<h1 class='page-title'>"+item.getTitle()+"</h1>"+
-                        "<div class='row product-viev'><div class='span4 image'>"+
-                                "<img id='main-product-image' src='content/product-small-img-1.png' data-zoom-image='content/product-big-img-1.png' alt=''>"+
-                                "<div id='product-images'>"+
-                                    "<a href='#' data-image='content/product-small-img-1.png' data-zoom-image='content/product-big-img-1.png'>"+
-                                        "<img src='content/product-gal-1.png' alt=''></a>"+
-                                    "<a href='#' data-image='content/product-small-img-2.png' data-zoom-image='content/product-big-img-2.png'>"+
-                                        "<img src='content/product-gal-2.png' alt=''></a>"+
-                                "</div>"+
-                                "<div class='carousel-prev product-prev'>Prev</div>"+
-                                "<div class='carousel-next product-next'>Prev</div></div>"+
-                            "<div class='span8 product-caption'><div class='row'><div class='top span8'>"+
-                                        "<div class='stars'></div> <a href='#' class='count-review'>5 rewiew(s)</a> | <a href='#' class='add-review'>Add your review</a>"+
-                                    "</div><p class='span8'>"+
-                                    item.getDescription()+
-                                    "</p>"+
-                                "</div>"+
-                                "<hr>"+
-                                "<div class='row product-options-one'>"+
-                                    "<div class='span3 pull-left'>"+
-                                        "<span class='availabillity'>Availabillity:</span> <span class='in-stock'>In stock</span><br>"+
-                                        "<span class='sku'>Sku:</span> <span class='sku-status'>Candles Ov</span>"+
-                                    "</div>"+
-                                    "<div class='span5 row pull-right'>"+
-                                        "<select class='first'>"+
-                                            "<option>Select a size</option>"+
-                                            "<option>12</option>"+
-                                            "<option>14</option>"+
-                                            "<option>16</option>"+
-                                            "<option>18</option>"+
-                                        "</select>"+
-                                        "<select>"+
-                                            "<option>Chose a material</option>"+
-                                            "<option>Cotton</option>"+
-                                            "<option>Polyester</option>"+
-                                        "</select>"+
-                                    "</div>"+
-                                "</div>"+
-                                "<div class='clearfix'></div>"+
-                                "<hr>"+
-                                "<div class='row product-price-box'>"+
-                                    "<div class='span3 pull-left'>"+
-                                        "<div class='price'>"+
-                                            "<div class='price-old'>$550.00</div>"+
-                                            "<div class='price-new'>$399.00</div>"+
-                                        "</div>"+
-                                    "</div>"+
-                                    "<div class='span5 pull-right product-button'>"+
-                                        "<div class='pull-left'>"+
-                                            "<a href='#' class='wishlist-link'>Add to wishlist</a><br>"+
-                                            "<a href='#' class='compaire-link'>Add to compaire</a>"+
-                                        "</div>"+
-                                        "<a href='#' class='btn pull-right'>Update Information</a>"+
-                                    "</div>"+
-                                "</div>"+
-                            "</div>"+
-                            "<div class='clearfix'></div>"+
 
-                            "<div class='span12 product-tab'>"+
-                                "<ul class='nav nav-tabs' id='product_tab'>"+
-                                    "<li class='active'><a href='#description'>Description</a></li>"+
-                                    "<li><a href='#reviews'>Reviews</a></li>"+
-                                    //"<li><a href='#custom-tab'>G</a></li>"+
-                                "</ul>"+
 
-                                "<div class='tab-content'>"+
-                                    "<div class='tab-pane active' id='description'>"+
-                                        "<h3>Description</h3>"+
-                                        "<p>"+
-                                            item.getDescription()+
-                                        "</p>"+
-                                        "<h3>Map</h3>"+
-                                        "<iframe width='100%' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com/maps?q="+latitude+","+longitude+"&amp;ie=UTF8&amp;t=m&amp;z=14&amp;ll="+latitude+","+longitude+"&amp;output=embed'></iframe>"+
-                                    "</div>"+
-                                    "<div class='tab-pane product-reviews' id='reviews'>"+
-                                        "<h3>Reviews</h3>"+
-                                        "<ul>"+
-                                            "<li>"+
-                                                "<div class='title'>"+
-                                                    "<span>Mike Example,</span> <time datetime='2013-11-03'>03.11.2013</time>"+
-                                                "</div>"+
-                                                "<div class='review-rating'>"+
-                                                    "<span>Rating <span class='stars6'></span></span> <span class='separator'>|</span>"+
-                                                "</div>"+
-                                                "<p>"+
-                                                    "Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum.  It enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "+
-                                                "</p>"+
-                                            "</li>"+
-                                       "</ul>"+
-                                        "<div class='profuct-form-reviews'>"+
-                                            "<h3>Write Your Own Review</h3>"+
-                                            "<form action='#'>"+
-                                                "<div class='rating-input'>"+
-                                                    "<span class='quality'>Quality <span class='required'>*</span></span>"+
-                                                    "<label><input type='radio' name='quality' value='1'><br>1</label>"+
-                                                    "<label><input type='radio' name='quality' value='2'><br>2</label>"+
-                                                    "<label><input type='radio' name='quality' value='3'><br>3</label>"+
-                                                    "<label><input type='radio' name='quality' value='4'><br>4</label>"+
-                                                    "<label><input type='radio' name='quality' value='5'><br>5</label>"+
-                                                    
-                                                "</div>"+
-                                                "<div class='left'>"+
-                                                    "<label>Nickname: <span class='required'>*</span></label>"+
-                                                    "<input type='text'>"+
-                                                    //"<label>Summary of Your Review: <span class='required'>*</span></label>"+
-                                                    //"<input type='text'>"+
-                                                    "<label>Review: <span class='required'>*</span></label>"+
-                                                    "<textarea></textarea>"+
-                                                    "<div class='note'>Note: HTML is not translated!</div>"+
-                                                "</div>"+
-                                                //"<div class='left'>"+
-                                                    
-                                                //"</div>"+
-                                                "<div class='clearfix'></div>"+
-                                                "<input type='submit' value='Submit' class='btn btn-primary'>"+
-                                            "</form>"+
-                                            "<div class='clearfix'></div>"+
-                                        "</div>"+
-                                    "</div>"+
-                               "</div>"+
-                                "<div class='carousel-grid'>"+
-                                    "<div class='title-one'><span>Related Products</span><div class='carousel-pager one pull-right'></div></div>"+
-                                    "<ul class='product-grid'>"+
-                                        
-                                        "<li>"+
-                                            "<article>"+
-                                                "<div class='border-top'></div>"+
-                                                "<div class='border-left'></div>"+
-                                                "<div class='border-right'></div>"+
-                                                "<div class='border-bottom'></div>"+
-                                                "<a href='product-view.html'><img src='content/baner-img-6.png' alt=''></a>"+
-                                                "<div class='product-caption'>"+
-                                                    "<div class='price'>"+
-                                                        "<span>$399.00</span>"+
-                                                    "</div>"+
-                                                    "<div class='inner'>"+
-                                                        "<h3 class='title'><a href='product-view.html' title='Caramel & Black Collared BODY Dress'>Caramel & Black Collared BODY Dress</a></h3>"+
-                                                        "<div class='cart-button'>"+
-                                                            "<a href='#' class='btn btn-primary'>Add to cart</a>"+
-                                                            "<a href='#' class='wishlist-link'>Add to wishlist</a>"+
-                                                            "<a href='#' class='compaire-link'>Add to compare</a>"+
-                                                            "<div class='clearfix'></div>"+
-                                                        "</div>"+
-                                                    "</div>"+
-                                                "</div>"+
-                                            "</article>"+
-                                        "</li>"+
-                                        
-                                    "</ul>"+
-                                    "<div class='carousel-prev'>&lt;</div>"+
-                                    "<div class='carousel-next'>&gt;</div>"+
-                                "</div>"+
-                            "</div>"+
+        <%
 
-                        "</div>"+
-                    "</div>"+
-                "</div>"+
-            "</div>"+
-        "</div>";
+                resultItem += "<div class='site-container'><div class='container entry-content'><div class='row'><div class='span12'>"
+                        + "<h1 class='page-title'>" + item.getTitle() + "</h1>"
+                        + "<div class='row product-viev'><div class='span4 image'>"
+                        + "<img id='main-product-image' src='content/product-small-img-1.png' data-zoom-image='content/product-big-img-1.png' alt=''>"
+                        + "<div id='product-images'>"
+                        + "<a href='#' data-image='content/product-small-img-1.png' data-zoom-image='content/product-big-img-1.png'>"
+                        + "<img src='content/product-gal-1.png' alt=''></a>"
+                        + "<a href='#' data-image='content/product-small-img-2.png' data-zoom-image='content/product-big-img-2.png'>"
+                        + "<img src='content/product-gal-2.png' alt=''></a>"
+                        + "</div>"
+                        + "<div class='carousel-prev product-prev'>Prev</div>"
+                        + "<div class='carousel-next product-next'>Prev</div></div>"
+                        + "<div class='span8 product-caption'><div class='row'><div class='top span8'>"
+                        + "<div class='stars'></div> <a href='#' class='count-review'>5 rewiew(s)</a> | <a href='#' class='add-review'>Add your review</a>"
+                        + "</div><p class='span8'>"
+                        + item.getDescription()
+                        + "</p>"
+                        + "</div>"
+                        + "<hr>"
+                        + "<div class='row product-options-one'>"
+                        + "<div class='span3 pull-left'>"
+                        + "<span class='availabillity'>Availabillity:</span> <span class='in-stock'>In stock</span><br>"
+                        + "<span class='sku'>Sku:</span> <span class='sku-status'>Candles Ov</span>"
+                        + "</div>"
+                        + "<div class='span5 row pull-right'>"
+                        + "<select class='first'>"
+                        + "<option>Select a size</option>"
+                        + "<option>12</option>"
+                        + "<option>14</option>"
+                        + "<option>16</option>"
+                        + "<option>18</option>"
+                        + "</select>"
+                        + "<select>"
+                        + "<option>Chose a material</option>"
+                        + "<option>Cotton</option>"
+                        + "<option>Polyester</option>"
+                        + "</select>"
+                        + "</div>"
+                        + "</div>"
+                        + "<div class='clearfix'></div>"
+                        + "<hr>"
+                        + "<div class='row product-price-box'>"
+                        + "<div class='span3 pull-left'>"
+                        + "<div class='price'>"
+                        + "<div class='price-old'>$550.00</div>"
+                        + "<div class='price-new'>$399.00</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "<div class='span5 pull-right product-button'>"
+                        + "<div class='pull-left'>"
+                        + "<a href='#' class='wishlist-link'>Add to wishlist</a><br>"
+                        + "<a href='#' class='compaire-link'>Add to compaire</a>"
+                        + "</div>"
+                        + "<a href='#' class='btn pull-right'>Update Information</a>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "<div class='clearfix'></div>"
+                        + "<div class='span12 product-tab'>"
+                        + "<ul class='nav nav-tabs' id='product_tab'>"
+                        + "<li class='active'><a href='#description'>Description</a></li>"
+                        + "<li><a href='#reviews'>Reviews</a></li>"
+                        + //"<li><a href='#custom-tab'>G</a></li>"+
+                        "</ul>"
+                        + "<div class='tab-content'>"
+                        + "<div class='tab-pane active' id='description'>"
+                        + "<h3>Description</h3>"
+                        + "<p>"
+                        + item.getDescription()
+                        + "</p>"
+                        + "<h3>Map</h3>"
+                        + "<iframe width='100%' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com/maps?q=" + latitude + "," + longitude + "&amp;ie=UTF8&amp;t=m&amp;z=14&amp;ll=" + latitude + "," + longitude + "&amp;output=embed'></iframe>"
+                        + "</div>"
+                        + "<div class='tab-pane product-reviews' id='reviews'>"
+                        + "<h3>Reviews</h3>"
+                        + "<ul>"
+                        + "<li>"
+                        + "<div class='title'>"
+                        + "<span>Mike Example,</span> <time datetime='2013-11-03'>03.11.2013</time>"
+                        + "</div>"
+                        + "<div class='review-rating'>"
+                        + "<span>Rating <span class='stars6'></span></span> <span class='separator'>|</span>"
+                        + "</div>"
+                        + "<p>"
+                        + "Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum.  It enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                        + "</p>"
+                        + "</li>"
+                        + "</ul>"
+                        + "<div class='profuct-form-reviews'>"
+                        + "<h3>Write Your Own Review</h3>"
+                        + "<form action='#'>"
+                        + "<div class='rating-input'>"
+                        + "<span class='quality'>Quality <span class='required'>*</span></span>"
+                        + "<label><input type='radio' name='quality' value='1'><br>1</label>"
+                        + "<label><input type='radio' name='quality' value='2'><br>2</label>"
+                        + "<label><input type='radio' name='quality' value='3'><br>3</label>"
+                        + "<label><input type='radio' name='quality' value='4'><br>4</label>"
+                        + "<label><input type='radio' name='quality' value='5'><br>5</label>"
+                        + "</div>"
+                        + "<div class='left'>"
+                        + "<label>Nickname: <span class='required'>*</span></label>"
+                        + "<input type='text'>"
+                        + //"<label>Summary of Your Review: <span class='required'>*</span></label>"+
+                        //"<input type='text'>"+
+                        "<label>Review: <span class='required'>*</span></label>"
+                        + "<textarea></textarea>"
+                        + "<div class='note'>Note: HTML is not translated!</div>"
+                        + "</div>"
+                        + //"<div class='left'>"+
+                        //"</div>"+
+                        "<div class='clearfix'></div>"
+                        + "<input type='submit' value='Submit' class='btn btn-primary'>"
+                        + "</form>"
+                        + "<div class='clearfix'></div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "<div class='carousel-grid'>"
+                        + "<div class='title-one'><span>Related Products</span><div class='carousel-pager one pull-right'></div></div>"
+                        + "<ul class='product-grid'>";
+                int count = 0;
+                do {
+                    resultItem += "<li>"
+                            + "<article>"
+                            + "<div class='border-top'></div>"
+                            + "<div class='border-left'></div>"
+                            + "<div class='border-right'></div>"
+                            + "<div class='border-bottom'></div>"
+                            + "<a href='product-view.html'><img src='content/baner-img-1.png' alt=''></a>"
+                            + "<div class='product-caption'>"
+                            + "<div class='price'>"
+                            + "<span>$399.00</span>"
+                            + "</div>"
+                            + "<div class='inner'>"
+                            + "<h3 class='title'><a href='product-view.html' title='Caramel & Black Collared BODY Dress'>Caramel & Black Collared BODY Dress</a></h3>"
+                            + "<div class='cart-button'>"
+                            + "<a href='#' class='btn btn-primary'>Add to cart</a>"
+                            + "<a href='#' class='wishlist-link'>Add to wishlist</a>"
+                            + "<a href='#' class='compaire-link'>Add to compare</a>"
+                            + "<div class='clearfix'></div>"
+                            + "</div>"
+                            + "</div>"
+                            + "</div>"
+                            + "</article>"
+                            + "</li>";
+                } while (count < 10);
 
-        buffer += resultItem;
 
-        //request.setAttribute("resultList", buffer);
-        //request.getRequestDispatcher("searchresults.jsp").forward(request, response);
-        
-        
-    } catch (Exception e) {
-        out.println("Exception is ;" + e);
-    } finally {
-        if (ps != null) {
-            ps.close();
-        }
 
-        if (con != null) {
-            con.close();
-        }
-    }
-%>
+                resultItem += "</ul>"
+                        + "<div class='carousel-prev'>&lt;</div>"
+                        + "<div class='carousel-next'>&gt;</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>";
 
-        <% out.println(buffer); %>
-        
+                buffer += resultItem;
+
+                //request.setAttribute("resultList", buffer);
+                //request.getRequestDispatcher("searchresults.jsp").forward(request, response);
+
+
+            } catch (Exception e) {
+                out.println("Exception is ;" + e);
+            } finally {
+                if (ps != null) {
+                    ps.close();
+                }
+
+                if (con != null) {
+                    con.close();
+                }
+            }
+        %>
+
+        <% out.println(buffer);%>
+
         <!--<div class="site-container">
             <div class="container entry-content">
                 <div class="row">
