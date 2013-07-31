@@ -325,7 +325,8 @@
                             + "</div>"
                             + "</article>"
                             + "</li>";
-                } while (count < 10);
+                    count++;
+                } while (count < 12);
 
 
 
