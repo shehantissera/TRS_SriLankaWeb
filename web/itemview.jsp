@@ -111,7 +111,8 @@
             tourRec.setNoOfDays(rsTour.getString(4));
             tourRec.setAccomadationType(rsTour.getString(4));
             tourRec.setBasis(rsTour.getString(6));
-            tourRec.setGEOID(Long.parseLong(rsTour.getString(7)));
+            tourRec.setsLocation(Long.parseLong(rsTour.getString(7)));
+            tourRec.seteLocation(Long.parseLong(rsTour.getString(8)));
             _GEOID = Long.parseLong(rsTour.getString(7));
         }
         if (itemCat == "Service") {
