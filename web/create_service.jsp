@@ -80,8 +80,22 @@
                             <label>Location:</label>
                             <select>
                                 <option disabled selected value="">Please Select</option>
-                                <option>Aaland Islands</option>
-                                <option>Afghanistan</option>
+                                <%
+                                DBCON obloc = new DBCON();
+                                Connection con2 = null;
+                                PreparedStatement ps2 = null;
+                                ResultSet locationsList = null;
+                                con2 = obloc.createConnection();
+                                String locations = "";
+                                String searchLocation = "SELECT * FROM trs_srilanka.sys_locations order by LOC_name";
+
+                                ps2 = con2.prepareStatement(searchLocation);
+                                locationsList = ps2.executeQuery();
+                                while (locationsList.next()) {
+                                    locations += "<option>"+locationsList.getString(2)+"</option>";
+                                }
+                                out.println(locations);
+                            %>
                             </select>
 
                             <label>Category: <span class="required">*</span></label>
@@ -114,8 +128,8 @@
                             <label>Latitude: <span class="required">*</span></label>
                             <input name="latitude" type="number" step="any" required title="Latitude can contain only the range from -90 to 90">
 
-                            <label>Images:</label>
-                            <input type="file" multiple="true" name="imageuploader"/>
+                            <label>Images name:</label>
+                            <input type="text" multiple="true" name="imagename"/>
 
 
                             <br><br>

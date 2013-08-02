@@ -13,9 +13,14 @@
 <%@ page language="java" import="javax.servlet.http.HttpServletRequest" %>
 <%@ page language="java" import="javax.servlet.http.HttpServletResponse" %>
 <%@ page language="java" import="javax.servlet.http.HttpSession" %>
+<%@ page language="java" import="java.util.ArrayList" %>
+<%@ page language="java" import="java.util.Iterator" %>
+<%@ page language="java" import="java.awt.Point" %>
+
 
 <% response.setContentType("text/html");%>
 <%
+    Point newPosition = null;
     long searchID = Long.parseLong(request.getParameter("id"));
     session.setAttribute("viewObjectID", searchID);
     DBCON ob = new DBCON();
@@ -25,6 +30,7 @@
     Boolean contains = false;
     Boolean GEOContains = false;
     long _GEOID = 0;
+    double avarageRating = 0;
     String itemCat = "";
     String searchServices = "SELECT * FROM trs_srilanka.sys_services where SVID=?;";
     String searchSight = "SELECT * FROM trs_srilanka.sys_sights where SID=?;";
@@ -39,6 +45,7 @@
     Service serviceRec = new Service();
     Sight sightRec = new Sight();
     Tour tourRec = new Tour();
+    
 
     try {
 
@@ -134,6 +141,63 @@
             }
         }
 
+        ArrayList<String> ratings = new ArrayList<String>();
+        int numberofComments = 0;
+        String Comments = "";
+        String commentSearchQuery = "SELECT * FROM trs_srilanka.sys_comments where REFID=? order by COM_datetime desc";
+        ps = con.prepareCall(commentSearchQuery);
+        ps.setLong(1, searchID);
+        ResultSet comments = ps.executeQuery();
+        while (comments.next()) {
+            numberofComments++;
+            int rating = Integer.parseInt(comments.getString(5));
+            ratings.add(comments.getString(5));
+            String printRating = "";
+            if (rating == 1) {
+                printRating = "stars2";
+            }
+            if (rating == 2) {
+                printRating = "stars4";
+            }
+            if (rating == 3) {
+                printRating = "stars6";
+            }
+            if (rating == 4) {
+                printRating = "stars8";
+            }
+            if (rating == 5) {
+                printRating = "stars10";
+            }
+            Comments += "<li><div class='title'><span>" + comments.getString(2) + ",</span> <time datetime='2013-11-03'>" + comments.getString(4) + "</time>"
+                    + "</div><div class='review-rating'>"
+                    + "<span>Rating <span class='" + printRating + "'></span></span> <span class='separator'>|</span>"
+                    + "</div><p>" + comments.getString(3) + "</p></li>";
+        }
+        //Nobody has replied on this post , be first to post answer.
+        if(numberofComments==0){
+            Comments += "<li><p>Nobody has replied on this item , be first to post a comment.</p></li>";
+            
+        }
+
+        double totalRatings = 0;
+        int commentCount = 0;
+        if (numberofComments > 0) 
+        {
+            while (numberofComments > commentCount) {
+                totalRatings += Integer.parseInt(ratings.get(commentCount));
+                commentCount++;
+            }
+            avarageRating = totalRatings / numberofComments;
+        }else
+        {
+            avarageRating = 0;
+        }
+        
+        String totalStar = "";
+        if(avarageRating==0){
+            totalStar = "stars1";
+        }
+
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -179,7 +243,7 @@
         <div class="site-container">
             <ul class="breadcrumb container-box">
                 <li><a href="#">Home</a></li>
-                <li class="active">Category</li>
+                <li class="active">Information</li>
             </ul>
         </div>
 
@@ -200,7 +264,7 @@
                         + "<div class='carousel-prev product-prev'>Prev</div>"
                         + "<div class='carousel-next product-next'>Prev</div></div>"
                         + "<div class='span8 product-caption'><div class='row'><div class='top span8'>"
-                        + "<div class='stars'></div> <a href='#' class='count-review'>5 rewiew(s)</a> | <a href='#' class='add-review'>Add your review</a>"
+                        + "<div class='"+totalStar+"'></div> <a href='#' class='count-review'>" + numberofComments + " rewiew(s)</a> | <a href='#' class='add-review'>Add your review below</a>"
                         + "</div><p class='span8'>"
                         + item.getDescription()
                         + "</p>"
@@ -267,25 +331,8 @@
                         + "<ul>";
                 //comment
 
-                String Comments = "";
-                String commentSearchQuery = "SELECT * FROM trs_srilanka.sys_comments where REFID=?";
-                ps = con.prepareCall(commentSearchQuery);
-                ps.setLong(1, searchID);
-                ResultSet comments = ps.executeQuery();
-                while(comments.next()) {
-                    
-                    Comments += "<li><div class='title'><span>"+comments.getString(2)+",</span> <time datetime='2013-11-03'>"+comments.getString(4)+"</time>"
-                        + "</div><div class='review-rating'>"
-                        + "<span>Rating <span class='stars6'></span></span> <span class='separator'>|</span>"
-                        + "</div><p>"+ comments.getString(3) + "</p></li>";
-                }
                 resultItem += Comments;
-                resultItem += "<li><div class='title'><span>Mike Example,</span> <time datetime='2013-11-03'>03.11.2013</time>"
-                        + "</div><div class='review-rating'>"
-                        + "<span>Rating <span class='stars6'></span></span> <span class='separator'>|</span>"
-                        + "</div><p>"
-                        + "Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum.  It enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-                        + "</p></li>";
+
                 //end of comment
                 resultItem += "</ul>"
                         + "<div class='profuct-form-reviews'>"
@@ -301,9 +348,9 @@
                         + "</div>"
                         + "<div class='left'>"
                         + "<label>Nickname: <span class='required'>*</span></label>"
-                        + "<input name='nickname' type='text' required>"
+                        + "<input name='nickname' type='text' required maxlength=45>"
                         + "<label>Review: <span class='required'>*</span></label>"
-                        + "<textarea name='comment' required></textarea>"
+                        + "<textarea name='comment' required maxlength=500></textarea>"
                         + "<div class='note'>Note: HTML is not translated!</div>"
                         + "</div>"
                         + "<div class='clearfix'></div>"

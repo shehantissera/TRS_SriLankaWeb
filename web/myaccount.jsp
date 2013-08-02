@@ -37,6 +37,7 @@
                             <input type="button" value="Create Sight" onclick="window.location.href = 'create_sight.jsp'" class="btn btn-primary">
                             <input type="button" value="Create Tour" onclick="window.location.href = 'create_tours.jsp'" class="btn btn-primary">
                             <input type="button" value="Create Service" onclick="window.location.href = 'create_service.jsp'" class="btn btn-primary">
+                            <input type="button" value="Add Location" onclick="window.location.href = 'create_location.jsp'" class="btn btn-primary">
                         </form>
                     </div>
                 </div>

@@ -295,7 +295,7 @@
                                 <option>Solomon Islands</option>
                                 <option>Somalia</option>
                                 <option>South Africa</option>
-                                <option>South Georgia and the South Sandwich Islands</option>
+                                <option>South Georgia</option>
                                 <option>Spain</option>
                                 <option>Spratly Islands</option>
                                 <option>Sri Lanka</option>
@@ -371,8 +371,11 @@
                             %>
                             
                             <br><br>
+                            
+                            <label>Images name:</label>
+                            <input type="text" multiple="true" name="imagename"/>
 
-                            -
+                            
                             <button name="addUser" type="submit" class="btn btn-primary">Create Acount</button>
                             <input type="reset" value="Clear" class="btn btn-primary">
 
