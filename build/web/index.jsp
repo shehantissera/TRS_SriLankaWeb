@@ -263,7 +263,7 @@
                             <a href="#" class="span4 banner"><img src="content/sample-benner-1.png" alt=""></a>
                         </div>
                         <div class="carousel-grid home">
-                            <div class="title-two"><div>&nbsp;</div><div>Recommended Products</div><div class="carousel-pager one"></div></div>
+                            <div class="title-two"><div>&nbsp;</div><div>Most Rated Places</div><div class="carousel-pager one"></div></div>
                             <ul class="product-grid">
                                 <li>
                                     <article>

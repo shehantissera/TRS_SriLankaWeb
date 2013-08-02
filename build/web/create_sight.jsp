@@ -77,8 +77,23 @@
                             <label>Location:</label>
                             <select name="location">
                                 <option disabled selected value="">Please Select</option>
-                                <option>Aaland Islands</option>
-                                <option>Afghanistan</option>
+                                
+                            <%
+                                DBCON obloc = new DBCON();
+                                Connection con2 = null;
+                                PreparedStatement ps2 = null;
+                                ResultSet locationsList = null;
+                                con2 = obloc.createConnection();
+                                String locations = "";
+                                String searchLocation = "SELECT * FROM trs_srilanka.sys_locations order by LOC_name";
+
+                                ps2 = con2.prepareStatement(searchLocation);
+                                locationsList = ps2.executeQuery();
+                                while (locationsList.next()) {
+                                    locations += "<option value='"+locationsList.getString(1)+"'>"+locationsList.getString(2)+"</option>";
+                                }
+                                out.println(locations);
+                            %>
                             </select>
 
                             <label>Category: <span class="required">*</span></label>
@@ -104,22 +119,7 @@
                             %>
                             
                             <br><br>
-                            <!--<table>
-                                <tr>
-                                    <td><label class="checkbox inline"><input type="checkbox" id="inlineCheckbox1" value="option1"> Category 1</label></td>
-                                    <td><label class="checkbox inline"><input type="checkbox" id="inlineCheckbox2" value="option2"> Category 2</label></td>
-                                    <td><label class="checkbox inline"><input type="checkbox" id="inlineCheckbox3" value="option3"> Category 3</label></td>
-                                </tr>
-                                <tr>
-                                    <td><label class="checkbox inline"><input type="checkbox" id="inlineCheckbox1" value="option1"> Category 1</label></td>
-                                    <td><label class="checkbox inline"><input type="checkbox" id="inlineCheckbox2" value="option2"> Category 2</label></td>
-                                    <td><label class="checkbox inline"><input type="checkbox" id="inlineCheckbox3" value="option3"> Category 3</label></td>
-                                </tr>
-                            </table>-->
-                            
                            
-
-                            <br><br>
 
                             <label>Longitude: <span class="required">*</span></label>
                             <input name="longitude" type="number" step="any" required title="Longitude can contain only the range from -180 to 180">
@@ -127,8 +127,8 @@
                             <label>Latitude: <span class="required">*</span></label>
                             <input name="latitude" type="number" step="any" required title="Latitude can contain only the range from -90 to 90">
 
-                            <label>Images:</label>
-                            <input type="file" multiple="true" name="imageuploader"/>
+                            <label>Images name:</label>
+                            <input type="text" multiple="true" name="imagename"/>
 
                             <br><br>
 

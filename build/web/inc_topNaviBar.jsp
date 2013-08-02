@@ -40,13 +40,13 @@
                         <li><a href="catalog-grid.html">Types of Services</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gallery</a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Types of Gallery</a></li>
                         <li><a href="#">All images</a></li>
                     </ul>
-                </li>
+                </li>-->
 
             </ul>
         </div>

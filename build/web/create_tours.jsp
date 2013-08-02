@@ -88,29 +88,43 @@
                                 ps = con.prepareStatement(searchINTEREST);
                                 interests = ps.executeQuery();
                                 while (interests.next()) {
-                                    categories += "<label class='checkbox inline'><input type='checkbox' id='inlineCheckbox"+count+"' value='"+interests.getString(2)+"'>"+interests.getString(2)+"</label>";
+                                    categories += "<label class='checkbox inline'><input type='checkbox' name='categories' id='inlineCheckbox"+count+"' value='"+interests.getString(2)+"'>"+interests.getString(2)+"</label>";
                                     count++;
                                 }
                                 out.println(categories);
                             %>
                             
                             <br><br>
+                            
+                            <%
+                                DBCON obloc = new DBCON();
+                                Connection con2 = null;
+                                PreparedStatement ps2 = null;
+                                ResultSet locationsList = null;
+                                con2 = obloc.createConnection();
+                                String locations = "";
+                                String searchLocation = "SELECT * FROM trs_srilanka.sys_locations order by LOC_name";
 
+                                ps2 = con2.prepareStatement(searchLocation);
+                                locationsList = ps2.executeQuery();
+                                while (locationsList.next()) {
+                                    locations += "<option value='"+locationsList.getString(1)+"'>"+locationsList.getString(2)+"</option>";
+                                }
+                            %>
                             <label>Starting Location:</label>
-                            <select>
+                            <select name="slocation">
                                 <option disabled selected value="">Please Select</option>
-                                <option>Aaland Islands</option>
-                                <option>Afghanistan</option>
+                                <% out.println(locations); %>
                             </select>
 
                             <label>Ending Location:</label>
-                            <select>
+                            <select name="elocation">
                                 <option disabled selected value="">Please Select</option>
-                                <option>Aaland Islands</option>
-                                <option>Afghanistan</option>
+                                <% out.println(locations); %>
                             </select>
-                            <label>Images:</label>
-                            <input type="file" multiple="true" name="imageuploader"/>
+                            
+                            <label>Images name:</label>
+                            <input type="text" multiple="true" name="imagename"/>
 
                             <br><br>
 
