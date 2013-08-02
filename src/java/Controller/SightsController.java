@@ -40,7 +40,7 @@ public class SightsController extends HttpServlet {
                 sight.setAdult(request.getParameter("adult"));
                 sight.setChild(request.getParameter("child"));
                 sight.setGEOID(GEOID);
-                sight.setLOCID(0);
+                sight.setLOCID(Long.parseLong(request.getParameter("location")));
                 
                 ArrayList<String> categoryList =new ArrayList<String>();
                 String[] checkboxNamesList = request.getParameterValues("categories");

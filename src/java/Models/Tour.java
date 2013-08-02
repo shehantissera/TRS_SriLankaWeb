@@ -13,6 +13,31 @@ import java.sql.Connection;
  */
 public class Tour {
     
+    private long TRID;
+    private String title;
+    private String itinary;
+    private String noOfDays;
+    private String accomadationType;
+    private String basis;
+    private long sLocation;
+    private long eLocation;
+
+    public long getsLocation() {
+        return sLocation;
+    }
+
+    public void setsLocation(long sLocation) {
+        this.sLocation = sLocation;
+    }
+
+    public long geteLocation() {
+        return eLocation;
+    }
+
+    public void seteLocation(long eLocation) {
+        this.eLocation = eLocation;
+    }
+    
     public long getTRID() {
         return TRID;
     }
@@ -53,14 +78,6 @@ public class Tour {
         this.accomadationType = accomadationType;
     }
 
-    public long getGEOID() {
-        return GEOID;
-    }
-
-    public void setGEOID(long GEOID) {
-        this.GEOID = GEOID;
-    }
-
     public String getBasis() {
         return basis;
     }
@@ -69,13 +86,7 @@ public class Tour {
         this.basis = basis;
     }
     
-    private long TRID;
-    private String title;
-    private String itinary;
-    private String noOfDays;
-    private String accomadationType;
-    private String basis;
-    private long GEOID;
+    
     
     public Tour insertTour(Tour rec){
         Tour flag = null;
@@ -84,14 +95,15 @@ public class Tour {
             Connection con = null;
             CallableStatement cs = null;
             con = ob.createConnection();
-            cs = con.prepareCall("{call trs_srilanka.insertTour(?,?,?,?,?,?,?)}");
+            cs = con.prepareCall("{call trs_srilanka.insertTour(?,?,?,?,?,?,?,?)}");
             cs.setLong(1, rec.getTRID());
             cs.setString(2, rec.getTitle());
             cs.setString(3, rec.getItinary());
             cs.setString(4, rec.getNoOfDays());
             cs.setString(5, rec.getAccomadationType());
             cs.setString(6, rec.getBasis());
-            cs.setLong(7, rec.getGEOID());
+            cs.setLong(7, rec.getsLocation());
+            cs.setLong(8, rec.geteLocation());
             int res = cs.executeUpdate();
             if(res>0){
                 flag = rec;

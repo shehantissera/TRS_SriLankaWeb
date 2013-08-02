@@ -4,12 +4,14 @@
  */
 package Controller;
 
+import Models.Category;
 import Models.Record;
 import Models.Tour;
 import Models.UniqueKeyGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,14 +49,26 @@ public class ToursController extends HttpServlet {
                 Tour tour = new Tour();
                 UniqueKeyGenerator key = new UniqueKeyGenerator();
                 
+                
                 tour.setTRID(key.generateNewKey3());
                 tour.setTitle(request.getParameter("title"));
                 tour.setItinary(request.getParameter("itinary"));
                 tour.setNoOfDays(request.getParameter("noOfDays"));
                 tour.setAccomadationType(request.getParameter("accomadationType"));
                 tour.setBasis(request.getParameter("basis"));
-                tour.setGEOID(0);
+                tour.setsLocation(Long.parseLong(request.getParameter("slocation")));
+                tour.seteLocation(Long.parseLong(request.getParameter("elocation")));
                 
+                ArrayList<String> categoryList =new ArrayList<String>();
+                String[] checkboxNamesList = request.getParameterValues("categories");
+                for (int i = 0; i < checkboxNamesList.length; i++) {
+                    String candidateid = checkboxNamesList[i];
+                    if (candidateid != null) {
+                        categoryList.add(candidateid.toString());
+                    }
+                }
+                Category cat = new Category();
+                cat.insertCategoryDetails(categoryList,tour.getTRID());
                 
                 Tour rslt = tour.insertTour(tour);
                 if(rslt != null){

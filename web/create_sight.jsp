@@ -90,7 +90,7 @@
                                 ps2 = con2.prepareStatement(searchLocation);
                                 locationsList = ps2.executeQuery();
                                 while (locationsList.next()) {
-                                    locations += "<option>"+locationsList.getString(2)+"</option>";
+                                    locations += "<option value='"+locationsList.getString(1)+"'>"+locationsList.getString(2)+"</option>";
                                 }
                                 out.println(locations);
                             %>

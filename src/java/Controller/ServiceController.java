@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Models.Category;
 import Models.GeoLocation;
 import Models.Record;
 import Models.Service;
@@ -11,6 +12,7 @@ import Models.UniqueKeyGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,7 +62,18 @@ public class ServiceController extends HttpServlet {
                 service.setAddress(request.getParameter("address"));
                 service.setServicetype(request.getParameter("servicetype"));
                 service.setGEOID(GEOID);
-                service.setLOCID(0);
+                service.setLOCID(Long.parseLong(request.getParameter("location")));
+                
+                ArrayList<String> categoryList =new ArrayList<String>();
+                String[] checkboxNamesList = request.getParameterValues("categories");
+                for (int i = 0; i < checkboxNamesList.length; i++) {
+                    String candidateid = checkboxNamesList[i];
+                    if (candidateid != null) {
+                        categoryList.add(candidateid.toString());
+                    }
+                }
+                Category cat = new Category();
+                cat.insertCategoryDetails(categoryList,service.getSVID());
                 
                 Service rslt = service.insertService(service);
                 if(rslt != null){

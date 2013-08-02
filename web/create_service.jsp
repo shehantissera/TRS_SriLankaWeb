@@ -78,7 +78,7 @@
                             </select>
 
                             <label>Location:</label>
-                            <select>
+                            <select name="location">
                                 <option disabled selected value="">Please Select</option>
                                 <%
                                 DBCON obloc = new DBCON();
@@ -92,7 +92,7 @@
                                 ps2 = con2.prepareStatement(searchLocation);
                                 locationsList = ps2.executeQuery();
                                 while (locationsList.next()) {
-                                    locations += "<option>"+locationsList.getString(2)+"</option>";
+                                    locations += "<option value='"+locationsList.getString(1)+"'>"+locationsList.getString(2)+"</option>";
                                 }
                                 out.println(locations);
                             %>
@@ -114,7 +114,7 @@
                                 ps = con.prepareStatement(searchINTEREST);
                                 interests = ps.executeQuery();
                                 while (interests.next()) {
-                                    categories += "<label class='checkbox inline'><input type='checkbox' id='inlineCheckbox"+count+"' value='"+interests.getString(2)+"'>"+interests.getString(2)+"</label>";
+                                    categories += "<label class='checkbox inline'><input type='checkbox' name='categories' id='inlineCheckbox"+count+"' value='"+interests.getString(2)+"'>"+interests.getString(2)+"</label>";
                                     count++;
                                 }
                                 out.println(categories);
