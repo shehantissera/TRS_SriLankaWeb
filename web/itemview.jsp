@@ -9,9 +9,15 @@
 <%@ page language="java" import="Models.Tour" %>
 <%@ page language="java" import="Models.Sight" %>
 <%@ page language="java" import="Models.SearchResultItem" %>
+<%@ page language="java" import="javax.servlet.http.HttpServlet" %>
+<%@ page language="java" import="javax.servlet.http.HttpServletRequest" %>
+<%@ page language="java" import="javax.servlet.http.HttpServletResponse" %>
+<%@ page language="java" import="javax.servlet.http.HttpSession" %>
+
 <% response.setContentType("text/html");%>
 <%
     long searchID = Long.parseLong(request.getParameter("id"));
+    session.setAttribute("viewObjectID", searchID);
     DBCON ob = new DBCON();
     Connection con = null;
     PreparedStatement ps = null;
@@ -127,6 +133,7 @@
                 latitude = rsGEO.getString(3);
             }
         }
+
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -252,52 +259,63 @@
                         + "</p>"
                         + "<h3>Map</h3>"
                         + "<iframe width='100%' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com/maps?q=" + latitude + "," + longitude + "&amp;ie=UTF8&amp;t=m&amp;z=14&amp;ll=" + latitude + "," + longitude + "&amp;output=embed'></iframe>"
-                        + "</div>"
-                        + "<div class='tab-pane product-reviews' id='reviews'>"
+                        + "</div>";
+
+                // Reviews section
+                resultItem += "<div class='tab-pane product-reviews' id='reviews'>"
                         + "<h3>Reviews</h3>"
-                        + "<ul>"
-                        + "<li>"
-                        + "<div class='title'>"
-                        + "<span>Mike Example,</span> <time datetime='2013-11-03'>03.11.2013</time>"
-                        + "</div>"
-                        + "<div class='review-rating'>"
+                        + "<ul>";
+                //comment
+
+                String Comments = "";
+                String commentSearchQuery = "SELECT * FROM trs_srilanka.sys_comments where REFID=?";
+                ps = con.prepareCall(commentSearchQuery);
+                ps.setLong(1, searchID);
+                ResultSet comments = ps.executeQuery();
+                while(comments.next()) {
+                    
+                    Comments += "<li><div class='title'><span>"+comments.getString(2)+",</span> <time datetime='2013-11-03'>"+comments.getString(4)+"</time>"
+                        + "</div><div class='review-rating'>"
                         + "<span>Rating <span class='stars6'></span></span> <span class='separator'>|</span>"
-                        + "</div>"
-                        + "<p>"
+                        + "</div><p>"+ comments.getString(3) + "</p></li>";
+                }
+                resultItem += Comments;
+                resultItem += "<li><div class='title'><span>Mike Example,</span> <time datetime='2013-11-03'>03.11.2013</time>"
+                        + "</div><div class='review-rating'>"
+                        + "<span>Rating <span class='stars6'></span></span> <span class='separator'>|</span>"
+                        + "</div><p>"
                         + "Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum.  It enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-                        + "</p>"
-                        + "</li>"
-                        + "</ul>"
+                        + "</p></li>";
+                //end of comment
+                resultItem += "</ul>"
                         + "<div class='profuct-form-reviews'>"
                         + "<h3>Write Your Own Review</h3>"
-                        + "<form action='#'>"
+                        + "<form method='post' name='reviewForm' action='CommentsController'>"
                         + "<div class='rating-input'>"
-                        + "<span class='quality'>Quality <span class='required'>*</span></span>"
-                        + "<label><input type='radio' name='quality' value='1'><br>1</label>"
-                        + "<label><input type='radio' name='quality' value='2'><br>2</label>"
-                        + "<label><input type='radio' name='quality' value='3'><br>3</label>"
-                        + "<label><input type='radio' name='quality' value='4'><br>4</label>"
-                        + "<label><input type='radio' name='quality' value='5'><br>5</label>"
+                        + "<span class='quality'>Rating <span class='required'>*</span></span>"
+                        + "<label><input type='radio' name='rating' value='1'><br>1</label>"
+                        + "<label><input type='radio' name='rating' value='2'><br>2</label>"
+                        + "<label><input type='radio' name='rating' value='3'><br>3</label>"
+                        + "<label><input type='radio' name='rating' value='4'><br>4</label>"
+                        + "<label><input type='radio' name='rating' value='5'><br>5</label>"
                         + "</div>"
                         + "<div class='left'>"
                         + "<label>Nickname: <span class='required'>*</span></label>"
-                        + "<input type='text'>"
-                        + //"<label>Summary of Your Review: <span class='required'>*</span></label>"+
-                        //"<input type='text'>"+
-                        "<label>Review: <span class='required'>*</span></label>"
-                        + "<textarea></textarea>"
+                        + "<input name='nickname' type='text' required>"
+                        + "<label>Review: <span class='required'>*</span></label>"
+                        + "<textarea name='comment' required></textarea>"
                         + "<div class='note'>Note: HTML is not translated!</div>"
                         + "</div>"
-                        + //"<div class='left'>"+
-                        //"</div>"+
-                        "<div class='clearfix'></div>"
-                        + "<input type='submit' value='Submit' class='btn btn-primary'>"
+                        + "<div class='clearfix'></div>"
+                        + "<input name'addCommentbtn' id='addCommentbtn' type='submit' value='Add Comment' class='btn btn-primary'>"
                         + "</form>"
                         + "<div class='clearfix'></div>"
                         + "</div>"
                         + "</div>"
-                        + "</div>"
-                        + "<div class='carousel-grid'>"
+                        + "</div>";
+
+
+                resultItem += "<div class='carousel-grid'>"
                         + "<div class='title-one'><span>Related Products</span><div class='carousel-pager one pull-right'></div></div>"
                         + "<ul class='product-grid'>";
                 int count = 0;
