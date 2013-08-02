@@ -109,6 +109,14 @@ public class Service {
         this.GEOID = GEOID;
     }
     
+    public double getRating() {
+        return Rating;
+    }
+
+    public void setRating(double Rating) {
+        this.Rating = Rating;
+    }
+    
     private long SVID;
     private String companyname;
     private String providername;
@@ -121,6 +129,17 @@ public class Service {
     private String servicetype;
     private long LOCID;
     private long GEOID;
+    private double Rating;
+    private int numberOfComments;
+
+    public int getNumberOfComments() {
+        return numberOfComments;
+    }
+
+    public void setNumberOfComments(int numberOfComments) {
+        this.numberOfComments = numberOfComments;
+    }
+    
     
     public Service insertService(Service rec){
         Service flag = null;

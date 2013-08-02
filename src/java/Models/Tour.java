@@ -21,6 +21,24 @@ public class Tour {
     private String basis;
     private long sLocation;
     private long eLocation;
+    private double Rating;
+    private int numberOfComments;
+
+    public int getNumberOfComments() {
+        return numberOfComments;
+    }
+
+    public void setNumberOfComments(int numberOfComments) {
+        this.numberOfComments = numberOfComments;
+    }
+
+    public double getRating() {
+        return Rating;
+    }
+
+    public void setRating(double Rating) {
+        this.Rating = Rating;
+    }
 
     public long getsLocation() {
         return sLocation;

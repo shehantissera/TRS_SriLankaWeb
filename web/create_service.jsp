@@ -64,7 +64,7 @@
                             <input name="mobile" type="number" required maxlength=20  placeholder="ex: 94770727245">
 
                             <label>Skype name:</label>
-                            <input name="skype" type="text" maxlength=100 required placeholder="Skype name...">
+                            <input name="skype" type="text" maxlength=100 placeholder="Skype name...">
 
                             <label>Address:</label>
                             <textarea name="address"  maxlength=999 placeholder="Description should be less than 1000 characters"></textarea>

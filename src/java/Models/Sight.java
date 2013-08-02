@@ -102,6 +102,14 @@ public class Sight {
         this.GEOID = GEOID;
     }
     
+    public double getRating() {
+        return Rating;
+    }
+
+    public void setRating(double Rating) {
+        this.Rating = Rating;
+    }
+    
     private long SID;
     private String name;
     private String brief;
@@ -113,6 +121,16 @@ public class Sight {
     private String child;
     private long LOCID;
     private long GEOID;
+    private double Rating;
+    private int numberOfComments;
+
+    public int getNumberOfComments() {
+        return numberOfComments;
+    }
+
+    public void setNumberOfComments(int numberOfComments) {
+        this.numberOfComments = numberOfComments;
+    }
     
     public Sight insertSight(Sight rec){
         Sight flag = null;
